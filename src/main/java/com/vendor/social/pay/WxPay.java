@@ -1,8 +1,6 @@
 package com.vendor.social.pay;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.util.Xml;
 
@@ -53,7 +51,6 @@ public class WxPay extends PayApi {
      * 这一套后台已经帮你处理好金额之类的了
      * @param payInfo 支付sdk
      */
-    @SuppressLint("StaticFieldLeak")
     @Override
     public void pay(PayBaseContent payInfo) {
         final WxPayContent content = (WxPayContent)payInfo;
@@ -62,7 +59,7 @@ public class WxPay extends PayApi {
         msgApi = WXAPIFactory.createWXAPI(mAct, SocialConfig.getWeixinId());
         msgApi.registerApp(SocialConfig.getWeixinId());
 
-        new AsyncTask<Void, Void, WxPayContent>() {
+        new AsyncTaskEx<Void, Void, WxPayContent>() {
 
             @Override
             protected WxPayContent doInBackground(Void... params) {
@@ -86,13 +83,12 @@ public class WxPay extends PayApi {
         }.execute();
     }
 
-    @SuppressLint("StaticFieldLeak")
     @Override
     public void pay(String subject, final String body, final String price) {
         msgApi = WXAPIFactory.createWXAPI(mAct, SocialConfig.getWeixinId());
         msgApi.registerApp(SocialConfig.getWeixinId());
 
-        new AsyncTask<Void, Void, Map<String,String>>() {
+        new AsyncTaskEx<Void, Void, Map<String,String>>() {
 
             @Override
             protected Map<String,String> doInBackground(Void... params) {

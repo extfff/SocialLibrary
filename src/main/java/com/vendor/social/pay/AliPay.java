@@ -1,8 +1,6 @@
 package com.vendor.social.pay;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import com.alipay.sdk.app.PayTask;
@@ -55,10 +53,9 @@ public class AliPay extends PayApi {
      * 服务端拼凑完成的字符串
      * @param payInfo 字符串
      */
-    @SuppressLint("StaticFieldLeak")
     @Override
     public void pay(final String payInfo){
-        new AsyncTask<Void, Void, PayResult>(){
+        new AsyncTaskEx<Void, Void, PayResult>(){
 
             @Override
             protected PayResult doInBackground(Void... params) {

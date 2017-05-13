@@ -36,7 +36,6 @@ dependencies {
     compile files('libs/weiboSDKCore_3.1.4.jar')  //微博  https://github.com/sinaweibosdk/weibo_android_sdk/blob/master/%E6%96%B0%E6%96%87%E6%A1%A3/openDefault-1.0.0.aar
     compile files('libs/open_sdk_r5788_lite.jar')  //qq分享  http://wiki.open.qq.com/wiki/mobile/SDK%E4%B8%8B%E8%BD%BD
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'  //微信  https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419319167&token=&lang=zh_CN
-    compile files('libs/mid-sdk-2.10.jar')
     compile files('libs/alipaySDK.jar')
     compile files('libs/httpclient-4.5.2.jar')
     compile files('libs/httpcore-4.4.4.jar')
