@@ -1,0 +1,7 @@
+<resources>
+    <string name="social_fail_weixin_un_install">分享失败，未安装微信。</string>
+
+    <string name="pay_succ">支付成功</string>
+    <string name="pay_fail_wait">支付结果确认中</string>
+    <string name="pay_fail">支付失败</string>
+</resources>
