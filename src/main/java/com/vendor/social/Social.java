@@ -1,12 +1,16 @@
 package com.vendor.social;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+
 /**
  * 社会化组件初始化配置
  * Created by ljfan on 16/4/19.
  */
-public class SocialConfig {
+public class Social {
 
-    static SocialConfig sInstance;
+    static Social sInstance;
 
     //微博分享
     private String mWeiboAppKey;
@@ -28,28 +32,59 @@ public class SocialConfig {
 
     //支付宝支付
     //商户PID
-    public String mPartner;
+    public String mAlipayPartner;
     //商户收款账号
-    public String mSeller;
+    public String mAlipaySeller;
     //商户私钥，pkcs8格式
-    public String mRsaPrivate;
+    public String mAlipayRsaPrivate;
+
+    private Social(){
+
+    }
+
+    /**
+     * 初始化配置 请在application类中调用
+     * @param context context
+     */
+    public static void init(Context context){
+        context = context.getApplicationContext();
+        if(sInstance == null){
+            sInstance = new Social();
+        }
+
+        ApplicationInfo appInfo = null;
+        try {
+            appInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if(appInfo != null && appInfo.metaData != null) {
+            sInstance.mWeiboAppKey = appInfo.metaData.getString("WEIBO_APP_KEY", "");
+            sInstance.mWeiboRedirectUrl = appInfo.metaData.getString("WEIBO_REDIRECT_URL", "");
+            sInstance.mWeiboScope = appInfo.metaData.getString("WEIBO_SCOPE", "");
+            sInstance.mTencentId = appInfo.metaData.getString("TENCENT_ID", "");
+            sInstance.mWeixinId = appInfo.metaData.getString("WEIXIN_ID", "");
+            sInstance.mWeixinSecret = appInfo.metaData.getString("WEIXIN_SECRET", "");
+            sInstance.mWeixinPayMchId = appInfo.metaData.getString("WEIXIN_PAY_MCH_ID", "");
+            sInstance.mWeixinPaySecret = appInfo.metaData.getString("WEIXIN_PAY_SECRET", "");
+            sInstance.mAlipayPartner = appInfo.metaData.getString("ALIPAY_PARTNER", "");
+            sInstance.mAlipaySeller = appInfo.metaData.getString("ALIPAY_SELLER", "");
+            sInstance.mAlipayRsaPrivate = appInfo.metaData.getString("ALIPAY_RSA_PRIVATE", "");
+        } else {
+            throw new IllegalStateException("error load social config");
+        }
+    }
 
     /**
      * 获取app实例
      * @return app实例
      */
-    public static SocialConfig getInstance() {
+    public static Social getInstance() {
         if (sInstance == null) {
-            sInstance = new SocialConfig();
+            sInstance = new Social();
         }
 
         return sInstance;
-    }
-
-    public static void setSinaWeibo(String appKey, String redirectUrl, String scope) {
-        getInstance().mWeiboAppKey = appKey;
-        getInstance().mWeiboRedirectUrl = redirectUrl;
-        getInstance().mWeiboScope = scope;
     }
 
     /**
@@ -86,16 +121,6 @@ public class SocialConfig {
      */
     public static String getTencentId() {
         return getInstance().mTencentId;
-    }
-
-    /**
-     * 设置微信分享
-     * @param id id
-     * @param secret secret
-     */
-    public static void setWeixin(String id, String secret) {
-        getInstance().mWeixinId = id;
-        getInstance().mWeixinSecret = secret;
     }
 
     /**
@@ -143,23 +168,11 @@ public class SocialConfig {
     }
 
     /**
-     * 设置微信支付
-     * @param partner 商户PID
-     * @param seller 商户收款账号
-     * @param rsaPrivate 商户私钥，pkcs8格式
-     */
-    public static void setAliPay(String partner, String seller, String rsaPrivate) {
-        getInstance().mPartner = partner;
-        getInstance().mSeller = seller;
-        getInstance().mRsaPrivate = rsaPrivate;
-    }
-
-    /**
      * 商户PID
      * @return partner
      */
     public static String getAlipayPartner() {
-        return getInstance().mPartner;
+        return getInstance().mAlipayPartner;
     }
 
     /**
@@ -167,7 +180,7 @@ public class SocialConfig {
      * @return seller
      */
     public static String getAlipaySeller() {
-        return getInstance().mSeller;
+        return getInstance().mAlipaySeller;
     }
 
     /**
@@ -175,6 +188,6 @@ public class SocialConfig {
      * @return rsaPrivate
      */
     public static String getAlipayRsaPrivate() {
-        return getInstance().mRsaPrivate;
+        return getInstance().mAlipayRsaPrivate;
     }
 }

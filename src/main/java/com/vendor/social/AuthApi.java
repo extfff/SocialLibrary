@@ -3,7 +3,9 @@ package com.vendor.social;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.vendor.social.auth.QQAuth;
 import com.vendor.social.auth.WeiXinAuth;
+import com.vendor.social.auth.WeiboAuth;
 import com.vendor.social.model.AuthType;
 import com.vendor.social.model.User;
 
@@ -54,12 +56,12 @@ public class AuthApi {
         AuthApi authApi;
 
         switch (socialType){
-//            case AuthType.QQ:
-//                authApi = new QQAuth(act);
-//                break;
-//            case AuthType.WEIBO:
-//                authApi = new WeiboAuth(act);
-//                break;
+            case AuthType.QQ:
+                authApi = new QQAuth(act);
+                break;
+            case AuthType.WEIBO:
+                authApi = new WeiboAuth(act);
+                break;
             case AuthType.WEIXIN:
                 authApi = new WeiXinAuth(act);
                 break;

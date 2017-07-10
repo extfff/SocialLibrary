@@ -8,7 +8,7 @@ import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.vendor.social.PayApi;
-import com.vendor.social.SocialConfig;
+import com.vendor.social.Social;
 import com.vendor.social.model.PayBaseContent;
 import com.vendor.social.model.WxPayContent;
 import com.vendor.social.pay.extra.MD5;
@@ -55,9 +55,9 @@ public class WxPay extends PayApi {
     public void pay(PayBaseContent payInfo) {
         final WxPayContent content = (WxPayContent)payInfo;
 
-        SocialConfig.setWeixinPay(content.appid, content.partnerid, content.prepayid);
-        msgApi = WXAPIFactory.createWXAPI(mAct, SocialConfig.getWeixinId());
-        msgApi.registerApp(SocialConfig.getWeixinId());
+        Social.setWeixinPay(content.appid, content.partnerid, content.prepayid);
+        msgApi = WXAPIFactory.createWXAPI(mAct, Social.getWeixinId());
+        msgApi.registerApp(Social.getWeixinId());
 
         new AsyncTaskEx<Void, Void, WxPayContent>() {
 
@@ -85,8 +85,8 @@ public class WxPay extends PayApi {
 
     @Override
     public void pay(String subject, final String body, final String price) {
-        msgApi = WXAPIFactory.createWXAPI(mAct, SocialConfig.getWeixinId());
-        msgApi.registerApp(SocialConfig.getWeixinId());
+        msgApi = WXAPIFactory.createWXAPI(mAct, Social.getWeixinId());
+        msgApi.registerApp(Social.getWeixinId());
 
         new AsyncTaskEx<Void, Void, Map<String,String>>() {
 
@@ -111,8 +111,8 @@ public class WxPay extends PayApi {
             protected void onPostExecute(Map<String,String> result) {
                 sbParams.append("prepay_id\n").append(result.get("prepay_id")).append("\n\n");
 
-                req.appId = SocialConfig.getWeixinId();
-                req.partnerId = SocialConfig.getWeixinMchId();
+                req.appId = Social.getWeixinId();
+                req.partnerId = Social.getWeixinMchId();
                 req.prepayId = result.get("prepay_id");
                 req.packageValue = "Sign=WXPay";
                 req.nonceStr = genNonceStr();
@@ -132,7 +132,7 @@ public class WxPay extends PayApi {
 
                 Log.e("orion", signParams.toString());
 
-                msgApi.registerApp(SocialConfig.getWeixinId());
+                msgApi.registerApp(Social.getWeixinId());
                 msgApi.sendReq(req);
             }
         }.execute();
@@ -141,9 +141,9 @@ public class WxPay extends PayApi {
     private String genProductArgs(String body, String money) {
         try {
             List<NameValuePair> packageParams = new LinkedList<>();
-            packageParams.add(new BasicNameValuePair("appid", SocialConfig.getWeixinId()));
+            packageParams.add(new BasicNameValuePair("appid", Social.getWeixinId()));
             packageParams.add(new BasicNameValuePair("body", body));
-            packageParams.add(new BasicNameValuePair("mch_id", SocialConfig.getWeixinMchId()));
+            packageParams.add(new BasicNameValuePair("mch_id", Social.getWeixinMchId()));
             packageParams.add(new BasicNameValuePair("nonce_str", genNonceStr()));
             packageParams.add(new BasicNameValuePair("notify_url", getNotifyUrl()));
             packageParams.add(new BasicNameValuePair("out_trade_no", getOutTradeNo()));
@@ -241,7 +241,7 @@ public class WxPay extends PayApi {
             sb.append('&');
         }
         sb.append("key=");
-        sb.append(SocialConfig.getWeixinPaySecret());
+        sb.append(Social.getWeixinPaySecret());
 
         if(!isPackageSign){
             sbParams.append("sign str\n").append(sb.toString()).append("\n\n");

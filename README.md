@@ -10,7 +10,93 @@ Library更新了jar包，截止2017-05-13，除微博最新的aar貌似要主工
 qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 <br><br><br><br>
 <B>调用实例：</B><br><br>
-**第三方登录-适用全部情况**
+**1、AndroidManifest.xml配置**
+
+	<!-- 微博 -->
+        <meta-data
+            android:name="WEIBO_APP_KEY"
+            android:value="${WEIBO_APP_KEY}"/>
+        <meta-data
+            android:name="WEIBO_REDIRECT_URL"
+            android:value="${WEIBO_REDIRECT_URL}"/>
+        <meta-data
+            android:name="WEIBO_SCOPE"
+            android:value="${WEIBO_SCOPE}"/>
+        <!-- QQ -->
+        <meta-data
+            android:name="TENCENT_ID"
+            android:value="${TENCENT_ID}"/>
+        <!-- 微信 -->
+        <meta-data
+            android:name="WEIXIN_ID"
+            android:value="${WEIXIN_ID}"/>
+        <meta-data
+            android:name="WEIXIN_SECRET"
+            android:value="${WEIXIN_SECRET}"/>
+        <!-- 微信支付 -->
+        <meta-data
+            android:name="WEIXIN_PAY_MCH_ID"
+            android:value="${WEIXIN_PAY_MCH_ID}"/>
+        <meta-data
+            android:name="WEIXIN_PAY_SECRET"
+            android:value="${WEIXIN_PAY_SECRET}"/>
+        <!-- 支付宝支付 -->
+        <meta-data
+            android:name="ALIPAY_PARTNER"
+            android:value="${ALIPAY_PARTNER}"/>
+        <meta-data
+            android:name="ALIPAY_SELLER"
+            android:value="${ALIPAY_SELLER}"/>
+        <meta-data
+            android:name="ALIPAY_RSA_PRIVATE"
+            android:value="${ALIPAY_RSA_PRIVATE}"/>
+
+**2、build.gradle配置**
+
+在android的节点底下添加（如不要多渠道配置，可直接第一步的<code>android:value</code>配置值即可）
+
+	buildTypes {
+        debug {
+            signingConfig signingConfigs.myConfigs
+            manifestPlaceholders = [  //debug环境
+                    //微博分享
+                    WEIBO_APP_KEY: "请输入申请的密钥",
+                    WEIBO_REDIRECT_URL: "请输入申请的密钥",
+                    WEIBO_SCOPE: "请输入申请的密钥",
+
+                    //腾讯qq分享
+                    TENCENT_ID: "请输入申请的密钥",
+
+                    //微信分享
+                    WEIXIN_ID: "请输入申请的密钥",
+                    WEIXIN_SECRET: "请输入申请的密钥",
+
+                    //微信支付
+                    //商户号
+                    WEIXIN_PAY_MCH_ID: "请输入申请的密钥",
+                    //API密钥，在商户平台设置
+                    WEIXIN_PAY_SECRET: "请输入申请的密钥",
+
+                    //支付宝支付
+                    //商户PID
+                    ALIPAY_PARTNER: "请输入申请的密钥",
+                    //商户收款账号
+                    ALIPAY_SELLER: "请输入申请的密钥",
+                    //商户私钥，pkcs8格式
+                    ALIPAY_RSA_PRIVATE: "请输入申请的密钥"
+            ]
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [  //release环境
+                    //...同debug
+            ]
+        }
+
+
+**3、调用第三方登录-适用全部情况**
 
 	AuthApi.doOauthVerify(this, AuthType.WEIXIN, new AuthApi.OnAuthListener() {
                     @Override
@@ -32,7 +118,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
                     }
                 });
 
-**支付宝支付**
+**4、调用支付宝支付**
 
 	public static void alipay(Activity act, String entity, PayApi.OnPayListener l){
         AliPay alipayApi = new AliPay(act);
@@ -46,7 +132,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
         }
     }
 
-**微信支付**
+**5、调用微信支付**
 
 	public static void wxpay(final Activity act, String entity, PayApi.OnPayListener l){
         WxPay wxApi = new WxPay(act);
@@ -69,7 +155,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
             ToastUtil.show(act, R.string.pay_error);
         }
     }
-**分享-适用全部情况**
+**6、调用第三方分享-适用全部情况**
 
 	mShareApi = new ShareApi(this);
             mShareApi.setOnShareListener(this);

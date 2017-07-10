@@ -7,7 +7,7 @@ import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 import com.vendor.social.ShareApi;
-import com.vendor.social.SocialConfig;
+import com.vendor.social.Social;
 import com.vendor.social.model.ShareType;
 
 import java.util.List;
@@ -39,7 +39,7 @@ public class QQZoneShare extends ShareApi{
         }
         params.putString(com.tencent.connect.share.QQShare.SHARE_TO_QQ_APP_NAME,  getShareContent().getAppName());
 
-        Tencent tencent = Tencent.createInstance(SocialConfig.getTencentId(), mActivity);
+        Tencent tencent = Tencent.createInstance(Social.getTencentId(), mActivity);
         tencent.shareToQzone(mActivity, params, mQQCallbackListener);
     }
 

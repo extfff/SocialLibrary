@@ -12,7 +12,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.vendor.social.PayApi;
-import com.vendor.social.SocialConfig;
+import com.vendor.social.Social;
 
 /**
  * 微信支付  继承此类  并类名为WXPayEntryActivity
@@ -25,7 +25,7 @@ public class WXPayBaseEntryActivity extends Activity implements IWXAPIEventHandl
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-    	api = WXAPIFactory.createWXAPI(this, SocialConfig.getWeixinId());
+    	api = WXAPIFactory.createWXAPI(this, Social.getWeixinId());
 
         api.handleIntent(getIntent(), this);
     }
