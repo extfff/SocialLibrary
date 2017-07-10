@@ -10,7 +10,7 @@ Library更新了jar包，截止2017-05-13，除微博最新的aar貌似要主工
 qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 <br><br><br><br>
 <B>调用实例：</B><br><br>
-//第三方登录<br>
+//第三方登录-适用全部情况<br>
 AuthApi.doOauthVerify(this, AuthType.WEIXIN, new AuthApi.OnAuthListener() {
                     @Override
                     public void onComplete(int type, com.sicinfo.sippl.social.model.User user) {
@@ -37,7 +37,7 @@ public static void alipay(Activity act, String entity, PayApi.OnPayListener l){
 
         try {
             JSONObject jsonObject = new JSONObject(entity);
-            alipayApi.pay(jsonObject.getString("pay_message"));  //服务队拼凑
+            alipayApi.pay(jsonObject.getString("pay_message"));  //服务端拼凑 客户端拼凑的Library也有提供，不过不放出使用方法，毕竟已经过时，如需要请联系作者
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public static void wxpay(final Activity act, String entity, PayApi.OnPayListener
         wxApi.setOnPayListener(l);
 
         try {
-            JSONObject jsonObject = new JSONObject(entity);
+            JSONObject jsonObject = new JSONObject(entity);  //服务端获取 客户端拼凑的Library也有提供，不过不放出使用方法，毕竟已经过时，如需要请联系作者
             jsonObject = jsonObject.getJSONObject("pay_message");
 
             WxPayContent req = new WxPayContent();
@@ -66,7 +66,7 @@ public static void wxpay(final Activity act, String entity, PayApi.OnPayListener
         }
     }
 
-//分享<br>
+//分享-适用全部情况<br>
 mShareApi = new ShareApi(this);
             mShareApi.setOnShareListener(this);
 
@@ -78,7 +78,7 @@ mShareApi = new ShareApi(this);
                     .setText(mCircle.introduce)
                     .setTargetUrl(String.format(AppConfig.SHARE_CIRCLE_URL, mCircle.circle_id))
                     .setAppIcon(R.mipmap.ic_launcher)
-                    .setIcon(mCircle.imgs.get(0).thumbnail)  //友圈必定有一张图
+                    .setIcon(mCircle.imgs.get(0).thumbnail)
                     .build();
 
 mShareApi = ShareApi.doShare(CircleDetailActivity.this, ShareType.QQ, shareContent, CircleDetailActivity.this);
