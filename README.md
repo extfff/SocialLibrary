@@ -11,6 +11,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 <br><br><br><br>
 <B>调用实例：</B><br><br>
 //第三方登录-适用全部情况<br>
+<code>
 AuthApi.doOauthVerify(this, AuthType.WEIXIN, new AuthApi.OnAuthListener() {
                     @Override
                     public void onComplete(int type, com.sicinfo.sippl.social.model.User user) {
@@ -30,7 +31,9 @@ AuthApi.doOauthVerify(this, AuthType.WEIXIN, new AuthApi.OnAuthListener() {
                         dismissProgress();
                     }
                 });
+</code>
 //支付宝支付<br>
+<code>
 public static void alipay(Activity act, String entity, PayApi.OnPayListener l){
         AliPay alipayApi = new AliPay(act);
         alipayApi.setOnPayListener(l);
@@ -42,8 +45,9 @@ public static void alipay(Activity act, String entity, PayApi.OnPayListener l){
             e.printStackTrace();
         }
     }
-
+</code>
 //微信支付<br>
+<code>
 public static void wxpay(final Activity act, String entity, PayApi.OnPayListener l){
         WxPay wxApi = new WxPay(act);
         wxApi.setOnPayListener(l);
@@ -65,8 +69,9 @@ public static void wxpay(final Activity act, String entity, PayApi.OnPayListener
             ToastUtil.show(act, R.string.pay_error);
         }
     }
-
+</code>
 //分享-适用全部情况<br>
+<code>
 mShareApi = new ShareApi(this);
             mShareApi.setOnShareListener(this);
 
@@ -82,3 +87,6 @@ mShareApi = new ShareApi(this);
                     .build();
 
 mShareApi = ShareApi.doShare(CircleDetailActivity.this, ShareType.QQ, shareContent, CircleDetailActivity.this);
+</code>
+
+有问题联系：QQ群 254202293
