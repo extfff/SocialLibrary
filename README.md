@@ -10,9 +10,9 @@ Library更新了jar包，截止2017-05-13，除微博最新的aar貌似要主工
 qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 <br><br><br><br>
 <B>调用实例：</B><br><br>
-//第三方登录-适用全部情况<br>
-<code>
-AuthApi.doOauthVerify(this, AuthType.WEIXIN, new AuthApi.OnAuthListener() {
+**第三方登录-适用全部情况**
+
+	AuthApi.doOauthVerify(this, AuthType.WEIXIN, new AuthApi.OnAuthListener() {
                     @Override
                     public void onComplete(int type, com.sicinfo.sippl.social.model.User user) {
                         dismissProgress();
@@ -31,10 +31,10 @@ AuthApi.doOauthVerify(this, AuthType.WEIXIN, new AuthApi.OnAuthListener() {
                         dismissProgress();
                     }
                 });
-</code>
-//支付宝支付<br>
-<code>
-public static void alipay(Activity act, String entity, PayApi.OnPayListener l){
+
+**支付宝支付**
+
+	public static void alipay(Activity act, String entity, PayApi.OnPayListener l){
         AliPay alipayApi = new AliPay(act);
         alipayApi.setOnPayListener(l);
 
@@ -45,10 +45,10 @@ public static void alipay(Activity act, String entity, PayApi.OnPayListener l){
             e.printStackTrace();
         }
     }
-</code>
-//微信支付<br>
-<code>
-public static void wxpay(final Activity act, String entity, PayApi.OnPayListener l){
+
+**微信支付**
+
+	public static void wxpay(final Activity act, String entity, PayApi.OnPayListener l){
         WxPay wxApi = new WxPay(act);
         wxApi.setOnPayListener(l);
 
@@ -69,10 +69,9 @@ public static void wxpay(final Activity act, String entity, PayApi.OnPayListener
             ToastUtil.show(act, R.string.pay_error);
         }
     }
-</code>
-//分享-适用全部情况<br>
-<code>
-mShareApi = new ShareApi(this);
+**分享-适用全部情况**
+
+	mShareApi = new ShareApi(this);
             mShareApi.setOnShareListener(this);
 
             String title = App.getInstance().isLogined() ? App.getInstance().getUser().realname : getString(R.string.app_name);
@@ -86,7 +85,6 @@ mShareApi = new ShareApi(this);
                     .setIcon(mCircle.imgs.get(0).thumbnail)
                     .build();
 
-mShareApi = ShareApi.doShare(CircleDetailActivity.this, ShareType.QQ, shareContent, CircleDetailActivity.this);
-</code>
+	mShareApi = ShareApi.doShare(CircleDetailActivity.this, ShareType.QQ, shareContent, CircleDetailActivity.this);
 
 有问题联系：QQ群 254202293
