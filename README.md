@@ -117,6 +117,8 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
                         dismissProgress();
                     }
                 });
+	如有微信登录需要配置如下环境
+	<code>在项目包名底下添加wxapi包,并新建WXEntryActivity extends WXBaseActivity，并在AndroidManifest.xml中声明此页面（具体写法可看Library的AndroidManifest.xml中的注释）</code>
 
 **4、调用支付宝支付**
 
@@ -155,6 +157,10 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
             ToastUtil.show(act, R.string.pay_error);
         }
     }
+
+	微信支付需要配置如下环境
+	<code>在项目包名底下添加wxapi包,并新建WXPayEntryActivity extends WXPayBaseActivity，并在AndroidManifest.xml中声明此页面（具体写法可看Library的AndroidManifest.xml中的注释）</code>
+
 **6、调用第三方分享-适用全部情况**
 
 	mShareApi = new ShareApi(this);
@@ -172,5 +178,8 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
                     .build();
 
 	mShareApi = ShareApi.doShare(CircleDetailActivity.this, ShareType.QQ, shareContent, CircleDetailActivity.this);
+
+	如有微信分享需要配置如下环境
+	<code>在项目包名底下添加wxapi包,并新建WXEntryActivity extends WXBaseActivity，并在AndroidManifest.xml中声明此页面（具体写法可看Library的AndroidManifest.xml中的注释）</code>
 
 有问题联系：QQ群 254202293
