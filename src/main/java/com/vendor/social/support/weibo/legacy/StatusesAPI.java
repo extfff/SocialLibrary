@@ -19,7 +19,6 @@ package com.vendor.social.support.weibo.legacy;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
-
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.net.WeiboParameters;
@@ -680,7 +679,7 @@ public class StatusesAPI extends AbsOpenAPI {
     }
 
     private WeiboParameters buildTimeLineWithApp(long since_id, long max_id, int count, int page, boolean base_app,
-                                                 int featureType) {
+            int featureType) {
         WeiboParameters params = buildTimeLineBase(since_id, max_id, count, page);
         params.put("feature", featureType);
         params.put("base_app", base_app ? 1 : 0);
@@ -688,7 +687,7 @@ public class StatusesAPI extends AbsOpenAPI {
     }
 
     private WeiboParameters buildTimeLineWithAppTrim(long since_id, long max_id, int count, int page, boolean base_app,
-                                                     boolean trim_user, int featureType) {
+            boolean trim_user, int featureType) {
         WeiboParameters params = buildTimeLineWithApp(since_id, max_id, count, page, base_app, featureType);
         params.put("trim_user", trim_user ? 1 : 0);
         return params;

@@ -12,7 +12,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.vendor.social.R;
 import com.vendor.social.ShareApi;
-import com.vendor.social.Social;
+import com.vendor.social.SocialConfig;
 import com.vendor.social.model.ShareType;
 import com.vendor.social.utils.BitmapLoader;
 
@@ -38,8 +38,8 @@ public class WeixinShare extends ShareApi{
             @Override
             public void onResult(Bitmap bitmap) {
                 if(bitmap != null){
-                    IWXAPI api = WXAPIFactory.createWXAPI(mActivity, Social.getWeixinId(), true);
-                    api.registerApp(Social.getWeixinId());
+                    IWXAPI api = WXAPIFactory.createWXAPI(mActivity, SocialConfig.getWeixinId(), true);
+                    api.registerApp(SocialConfig.getWeixinId());
 
                     if(!api.isWXAppInstalled()) {
                         Toast.makeText(mActivity, R.string.social_fail_weixin_un_install, Toast.LENGTH_SHORT).show();
@@ -58,7 +58,7 @@ public class WeixinShare extends ShareApi{
                     req.transaction = buildTransaction("webpage");
                     req.message = msg;
                     req.scene = SendMessageToWX.Req.WXSceneSession;
-//                    req.openId = Social.getWeixinId();
+//                    req.openId = SocialConfig.getWeixinId();
                     api.sendReq(req);
                 }else{
                     callbackShareFail("ImageLoader load image fail");

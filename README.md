@@ -12,7 +12,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 <B>调用步骤：</B><br><br>
 **1、AndroidManifest.xml配置**
 
-	<!-- 微博 -->
+		<!-- 微博 -->
         <meta-data
             android:name="WEIBO_APP_KEY"
             android:value="${WEIBO_APP_KEY}"/>
@@ -50,7 +50,20 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
         <meta-data
             android:name="ALIPAY_RSA_PRIVATE"
             android:value="${ALIPAY_RSA_PRIVATE}"/>
-
+        <!-- 微信分享 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:launchMode="singleTop"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent"
+            android:screenOrientation="portrait" />
+        <!-- 微信支付 -->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:launchMode="singleTop"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent"
+            android:screenOrientation="portrait" />
 **2、build.gradle配置**
 
 在android的节点底下添加（如不要多渠道配置，可直接第一步的<code>android:value</code>配置值即可）
@@ -182,6 +195,13 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 
 	mShareApi = ShareApi.doShare(CircleDetailActivity.this, ShareType.QQ, shareContent, CircleDetailActivity.this);
 
+	//如有qq、qq空间分享需要在调用页面的onActivityResult添加
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mShareApi.onActivityResult(requestCode, resultCode, data);
+    }
 	
 	//如有微信分享需要配置如下环境
 	//在项目包名底下添加wxapi包,并新建WXEntryActivity extends WXBaseActivity，并在AndroidManifest.xml中声明此页面（具体写法可看Library的AndroidManifest.xml中的注释）

@@ -18,7 +18,6 @@ package com.vendor.social.support.weibo;
 
 import android.content.Context;
 import android.text.TextUtils;
-
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.net.AsyncWeiboRunner;
 import com.sina.weibo.sdk.net.RequestListener;

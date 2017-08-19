@@ -5,7 +5,7 @@ import android.text.TextUtils;
 
 import com.alipay.sdk.app.PayTask;
 import com.vendor.social.PayApi;
-import com.vendor.social.Social;
+import com.vendor.social.SocialConfig;
 import com.vendor.social.model.PayBaseContent;
 import com.vendor.social.pay.extra.alipay.PayResult;
 import com.vendor.social.pay.extra.alipay.SignUtils;
@@ -113,10 +113,10 @@ public class AliPay extends PayApi {
      */
     private String createOrderInfo(String subject, String body, String price) {
         // 签约合作者身份ID
-        String orderInfo = "partner=" + "\"" + Social.getAlipayPartner() + "\"";
+        String orderInfo = "partner=" + "\"" + SocialConfig.getAlipayPartner() + "\"";
 
         // 签约卖家支付宝账号
-        orderInfo += "&seller_id=" + "\"" + Social.getAlipaySeller() + "\"";
+        orderInfo += "&seller_id=" + "\"" + SocialConfig.getAlipaySeller() + "\"";
 
         // 商户网站唯一订单号
         orderInfo += "&out_trade_no=" + "\"" + getOutTradeNo() + "\"";
@@ -162,7 +162,7 @@ public class AliPay extends PayApi {
     }
 
     private String sign(String content) {
-        return SignUtils.sign(content, Social.getAlipayRsaPrivate());
+        return SignUtils.sign(content, SocialConfig.getAlipayRsaPrivate());
     }
 
     /**

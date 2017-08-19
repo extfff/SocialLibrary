@@ -16,13 +16,13 @@
 
 package com.vendor.social.support.weibo.models;
 
-import android.text.TextUtils;
+import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+import android.text.TextUtils;
 
 /**
  * 好友分组列表。

@@ -3,6 +3,7 @@ package com.vendor.social;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.tencent.tauth.Tencent;
 import com.vendor.social.model.ShareContent;
 import com.vendor.social.model.ShareType;

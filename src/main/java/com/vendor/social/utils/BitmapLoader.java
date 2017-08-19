@@ -2,7 +2,6 @@ package com.vendor.social.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;

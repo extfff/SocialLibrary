@@ -20,7 +20,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.util.SparseArray;
-
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.net.WeiboParameters;
@@ -111,7 +110,7 @@ public class StatusesAPI extends AbsOpenAPI {
      */
     public void friendsTimeline(long since_id, long max_id, int count, int page, boolean base_app,
             int featureType, boolean trim_user, RequestListener listener) {
-        WeiboParameters params =
+        WeiboParameters params = 
                 buildTimeLineParamsBase(since_id, max_id, count, page, base_app, trim_user, featureType);
         requestAsync(sAPIList.get(READ_API_FRIENDS_TIMELINE), params, HTTPMETHOD_GET, listener);
     }    
@@ -245,7 +244,7 @@ public class StatusesAPI extends AbsOpenAPI {
 
     // 组装TimeLines的参数
     private WeiboParameters buildTimeLineParamsBase(long since_id, long max_id, int count, int page,
-                                                    boolean base_app, boolean trim_user, int featureType) {
+            boolean base_app, boolean trim_user, int featureType) {
         WeiboParameters params = new WeiboParameters(mAppKey);
         params.put("since_id", since_id);
         params.put("max_id", max_id);
@@ -271,7 +270,7 @@ public class StatusesAPI extends AbsOpenAPI {
     }
     
     private WeiboParameters buildMentionsParams(long since_id, long max_id, int count, int page,
-                                                int authorType, int sourceType, int filterType, boolean trim_user) {
+            int authorType, int sourceType, int filterType, boolean trim_user) {
         WeiboParameters params = new WeiboParameters(mAppKey);
         params.put("since_id", since_id);
         params.put("max_id", max_id);

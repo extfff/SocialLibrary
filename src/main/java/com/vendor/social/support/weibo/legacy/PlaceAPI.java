@@ -17,7 +17,6 @@
 package com.vendor.social.support.weibo.legacy;
 
 import android.content.Context;
-
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.net.WeiboParameters;
@@ -595,7 +594,7 @@ public class PlaceAPI extends AbsOpenAPI {
 
     // 组装UserParams的参数
     private WeiboParameters buildNearbyParams(String lat, String lon, int range, int count, int page,
-                                              int sortType, boolean offset) {
+            int sortType, boolean offset) {
         WeiboParameters params = new WeiboParameters(mAppKey);
         params.put("lat", lat);
         params.put("long", lon);

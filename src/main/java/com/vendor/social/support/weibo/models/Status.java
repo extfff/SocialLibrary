@@ -16,11 +16,11 @@
 
 package com.vendor.social.support.weibo.models;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 /**
  * 微博结构体。

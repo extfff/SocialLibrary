@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class ShareContent implements Parcelable {
 
-    public static final Creator<ShareContent> CREATOR = new Creator<ShareContent>() {
+    public static final Parcelable.Creator<ShareContent> CREATOR = new Parcelable.Creator<ShareContent>() {
         @Override
         public ShareContent createFromParcel(Parcel source) {
             return new ShareContent(source);

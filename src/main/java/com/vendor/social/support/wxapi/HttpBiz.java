@@ -1,5 +1,7 @@
 package com.vendor.social.support.wxapi;
 
+import org.json.JSONException;
+
 /**
  * 网络请求基类biz
  * Created by ljfan on 16/04/19.

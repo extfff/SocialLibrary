@@ -6,7 +6,7 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.vendor.social.AuthApi;
-import com.vendor.social.Social;
+import com.vendor.social.SocialConfig;
 import com.vendor.social.model.AuthType;
 
 /**
@@ -27,8 +27,8 @@ public class WeiXinAuth extends AuthApi {
         req.scope = "snsapi_userinfo";
         req.state = "wechat";
 
-        IWXAPI api = WXAPIFactory.createWXAPI(mActivity, Social.getWeixinId(), true);
-        api.registerApp(Social.getWeixinId());
+        IWXAPI api = WXAPIFactory.createWXAPI(mActivity, SocialConfig.getWeixinId(), true);
+        api.registerApp(SocialConfig.getWeixinId());
 
         api.sendReq(req);
     }

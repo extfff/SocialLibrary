@@ -7,7 +7,7 @@ import android.text.TextUtils;
 
 import com.alipay.sdk.app.AuthTask;
 import com.vendor.social.AuthApi;
-import com.vendor.social.Social;
+import com.vendor.social.SocialConfig;
 import com.vendor.social.model.User;
 import com.vendor.social.pay.extra.alipay.AuthResult;
 import com.vendor.social.pay.extra.alipay.util.OrderInfoUtil2_0;
@@ -35,11 +35,11 @@ public class AliAuth extends AuthApi {
          * authInfo的获取必须来自服务端；
          */
         Map<String, String> authInfoMap = OrderInfoUtil2_0.buildAuthInfoMap(
-                Social.getAlipayPartner(),
-                Social.getAlipaySeller(),
-                Social.getAlipayRsaPrivate());
+                SocialConfig.getAlipayPartner(),
+                SocialConfig.getAlipaySeller(),
+                SocialConfig.getAlipayRsaPrivate());
         String info = OrderInfoUtil2_0.buildOrderParam(authInfoMap);
-        String sign = OrderInfoUtil2_0.getSign(authInfoMap, Social.getAlipayRsaPrivate());
+        String sign = OrderInfoUtil2_0.getSign(authInfoMap, SocialConfig.getAlipayRsaPrivate());
         final String authInfo = info + "&" + sign;
 
         new AsyncTask<Void, Void, AuthResult>(){

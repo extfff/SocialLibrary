@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.tencent.mm.opensdk.modelbase.BaseReq;
-import com.tencent.mm.opensdk.modelbase.BaseResp;
-import com.tencent.mm.opensdk.modelmsg.SendAuth;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.vendor.social.Social;
+import com.tencent.mm.sdk.modelbase.BaseReq;
+import com.tencent.mm.sdk.modelbase.BaseResp;
+import com.tencent.mm.sdk.modelmsg.SendAuth;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.vendor.social.SocialConfig;
 import com.vendor.social.auth.WeiXinAuth;
 import com.vendor.social.model.User;
 import com.vendor.social.share.WeixinShare;
@@ -34,7 +34,7 @@ public class WXBaseActivity extends Activity implements IWXAPIEventHandler, OnHt
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        api = WXAPIFactory.createWXAPI(this, Social.getWeixinId(), false);
+        api = WXAPIFactory.createWXAPI(this, SocialConfig.getWeixinId(), false);
         api.handleIntent(getIntent(), this);
 
     }
@@ -55,7 +55,7 @@ public class WXBaseActivity extends Activity implements IWXAPIEventHandler, OnHt
                     if(mHttpBiz == null){
                         mHttpBiz = new HttpBiz();
                     }
-                    mHttpBiz.doGet(CODE_AUTH, Social.getWeixinId(), Social.getWeixinSecret(), ((SendAuth.Resp) resp).code, this);
+                    mHttpBiz.doGet(CODE_AUTH, SocialConfig.getWeixinId(), SocialConfig.getWeixinSecret(), ((SendAuth.Resp) resp).code, this);
                     break;
                 case BaseResp.ErrCode.ERR_USER_CANCEL:
                     WeiXinAuth.setCancelCallBack();

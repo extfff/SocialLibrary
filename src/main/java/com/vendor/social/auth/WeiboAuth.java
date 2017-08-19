@@ -10,7 +10,7 @@ import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.vendor.social.AuthApi;
-import com.vendor.social.Social;
+import com.vendor.social.SocialConfig;
 import com.vendor.social.model.AuthType;
 import com.vendor.social.support.weibo.UsersAPI;
 import com.vendor.social.support.weibo.models.ErrorInfo;
@@ -37,9 +37,9 @@ public class WeiboAuth extends AuthApi {
     public void doOauthVerify(){
         // 创建授权认证信息
         AuthInfo authInfo = new AuthInfo(mActivity,
-                Social.getWeiboAppKey(),
-                Social.getWeiboRedirectUrl(),
-                Social.getWeiboScope());
+                SocialConfig.getWeiboAppKey(),
+                SocialConfig.getWeiboRedirectUrl(),
+                SocialConfig.getWeiboScope());
 
         mSsoHandler = new SsoHandler(mActivity, authInfo);
 
@@ -54,7 +54,7 @@ public class WeiboAuth extends AuthApi {
             public void onComplete(Bundle values) {
                 final Oauth2AccessToken accessToken = Oauth2AccessToken.parseAccessToken(values);
 
-                UsersAPI api = new UsersAPI(mActivity, Social.getWeiboAppKey(), accessToken);
+                UsersAPI api = new UsersAPI(mActivity, SocialConfig.getWeiboAppKey(), accessToken);
                 long uid = Long.parseLong(accessToken.getUid());
                 api.show(uid, new RequestListener() {
                     @Override
