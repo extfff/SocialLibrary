@@ -3,11 +3,11 @@ package com.vendor.social;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.tencent.tauth.Tencent;
 import com.vendor.social.model.ShareContent;
 import com.vendor.social.model.ShareType;
 import com.vendor.social.share.QQShare;
+import com.vendor.social.share.QQZoneShare;
 import com.vendor.social.share.WeiboShare;
 import com.vendor.social.share.WeixinCircleShare;
 import com.vendor.social.share.WeixinShare;
@@ -50,7 +50,7 @@ public class ShareApi {
                 shareApi = new QQShare(act);
                 break;
             case ShareType.QQ_ZONE:
-                shareApi = new QQShare(act);
+                shareApi = new QQZoneShare(act);
                 break;
             case ShareType.WEIBO:
                 shareApi = new WeiboShare(act);
@@ -103,6 +103,11 @@ public class ShareApi {
             case ShareType.QQ:
                 if(this instanceof QQShare) {
                     Tencent.onActivityResultData(requestCode, resultCode, data, ((QQShare) this).getQQCallbackListener());
+                }
+                break;
+            case ShareType.QQ_ZONE:
+                if(this instanceof QQZoneShare) {
+                    Tencent.onActivityResultData(requestCode, resultCode, data, ((QQZoneShare) this).getQQCallbackListener());
                 }
                 break;
             case ShareType.WEIBO:

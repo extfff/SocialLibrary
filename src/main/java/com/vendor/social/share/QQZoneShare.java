@@ -6,10 +6,13 @@ import android.os.Bundle;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
+import com.vendor.social.R;
 import com.vendor.social.ShareApi;
-import com.vendor.social.SocialConfig;
+import com.vendor.social.Social;
 import com.vendor.social.model.ShareType;
+import com.vendor.social.utils.ResConvert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,20 +29,20 @@ public class QQZoneShare extends ShareApi{
     public void doShare(){
         setShareType(ShareType.QQ_ZONE);
 
-        final Bundle params = new Bundle();
+        Bundle params = new Bundle();
         params.putInt(com.tencent.connect.share.QQShare.SHARE_TO_QQ_KEY_TYPE, com.tencent.connect.share.QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
         params.putString(com.tencent.connect.share.QQShare.SHARE_TO_QQ_TITLE, getShareContent().getTitle());
         params.putString(com.tencent.connect.share.QQShare.SHARE_TO_QQ_SUMMARY,  getShareContent().getText());
         params.putString(com.tencent.connect.share.QQShare.SHARE_TO_QQ_TARGET_URL,  getShareContent().getTargetUrl());
-        List<String> iconList = getShareContent().getIconList();
-        if(iconList != null && iconList.size() > 0) {  //分享图片
-            params.putString(com.tencent.connect.share.QQShare.SHARE_TO_QQ_IMAGE_URL, getShareContent().getIconList().get(0));
-        }else {
-            params.putInt(com.tencent.connect.share.QQShare.SHARE_TO_QQ_IMAGE_URL, getShareContent().getAppIcon());
+
+        ArrayList<String> iconList  = new ArrayList<>(getShareContent().getIconList());
+        if(iconList.size() > 0) {  //分享图片 qq空间 一定要网络图片才可以
+            params.putStringArrayList(com.tencent.connect.share.QQShare.SHARE_TO_QQ_IMAGE_URL, iconList);
         }
         params.putString(com.tencent.connect.share.QQShare.SHARE_TO_QQ_APP_NAME,  getShareContent().getAppName());
+//        params.putInt(QQShare.SHARE_TO_QQ_EXT_INT,  "其他附加功能");
 
-        Tencent tencent = Tencent.createInstance(SocialConfig.getTencentId(), mActivity);
+        Tencent tencent = Tencent.createInstance(Social.getTencentId(), mActivity);
         tencent.shareToQzone(mActivity, params, mQQCallbackListener);
     }
 
@@ -57,7 +60,7 @@ public class QQZoneShare extends ShareApi{
 
         @Override
         public void onCancel() {
-
+            callbackShareFail(mActivity.getString(R.string.share_cancel));
         }
     };
 

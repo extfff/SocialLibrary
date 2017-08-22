@@ -13,7 +13,7 @@ import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.vendor.social.ShareApi;
-import com.vendor.social.SocialConfig;
+import com.vendor.social.Social;
 import com.vendor.social.model.ShareType;
 import com.vendor.social.support.weibo.StatusesAPI;
 import com.vendor.social.support.weibo.WbBaseActivity;
@@ -35,7 +35,7 @@ public class WeiboShare extends ShareApi {
     @Override
     public void doShare() {
         // 创建微博分享接口实例
-        mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(mActivity, SocialConfig.getWeiboAppKey());
+        mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(mActivity, Social.getWeiboAppKey());
 
         final String content = getShareContent().getTitle() + "\n" + getShareContent().getText() + "\n" + getShareContent().getTargetUrl();
 
@@ -43,9 +43,9 @@ public class WeiboShare extends ShareApi {
         if (!mWeiboShareAPI.isWeiboAppInstalled()) {
             // 创建授权认证信息
             AuthInfo authInfo = new AuthInfo(mActivity,
-                    SocialConfig.getWeiboAppKey(),
-                    SocialConfig.getWeiboRedirectUrl(),
-                    SocialConfig.getWeiboScope());
+                    Social.getWeiboAppKey(),
+                    Social.getWeiboRedirectUrl(),
+                    Social.getWeiboScope());
 
             SsoHandler ssoHandler = new SsoHandler(mActivity, authInfo);
             ssoHandler.authorize(new WeiboAuthListener() {
@@ -65,7 +65,7 @@ public class WeiboShare extends ShareApi {
                         public void onResult(Bitmap bitmap) {
                             if (bitmap != null) {
                                 if (accessToken != null && accessToken.isSessionValid()) {
-                                    new StatusesAPI(mActivity, SocialConfig.getWeiboAppKey(), accessToken).upload(content, bitmap, null, null, new RequestListener() {
+                                    new StatusesAPI(mActivity, Social.getWeiboAppKey(), accessToken).upload(content, bitmap, null, null, new RequestListener() {
 
                                         @Override
                                         public void onWeiboException(WeiboException arg0) {

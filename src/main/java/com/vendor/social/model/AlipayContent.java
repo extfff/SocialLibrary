@@ -7,7 +7,7 @@ import java.net.URLEncoder;
  * 支付宝支付基类
  * Created by ljfan on 16/5/14.
  */
-public class AlipayContent extends PayBaseContent{
+public class AlipayContent extends PayBaseContent {
 
     public String body; //奥康女鞋 冬季新品英伦风潮流及踝靴 蕾丝系带单鞋牛皮细跟女鞋子",
 

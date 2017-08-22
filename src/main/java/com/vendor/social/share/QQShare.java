@@ -6,9 +6,11 @@ import android.os.Bundle;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
+import com.vendor.social.R;
 import com.vendor.social.ShareApi;
-import com.vendor.social.SocialConfig;
+import com.vendor.social.Social;
 import com.vendor.social.model.ShareType;
+import com.vendor.social.utils.ResConvert;
 
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class QQShare extends ShareApi{
     public void doShare(){
         setShareType(ShareType.QQ);
 
-        final Bundle params = new Bundle();
+        Bundle params = new Bundle();
         params.putInt(com.tencent.connect.share.QQShare.SHARE_TO_QQ_KEY_TYPE, com.tencent.connect.share.QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
         params.putString(com.tencent.connect.share.QQShare.SHARE_TO_QQ_TITLE, getShareContent().getTitle());
         params.putString(com.tencent.connect.share.QQShare.SHARE_TO_QQ_SUMMARY,  getShareContent().getText());
@@ -36,12 +38,12 @@ public class QQShare extends ShareApi{
         if(iconList != null && iconList.size() > 0) {  //分享图片
             params.putString(com.tencent.connect.share.QQShare.SHARE_TO_QQ_IMAGE_URL, iconList.get(0));
         }else {
-            params.putInt(com.tencent.connect.share.QQShare.SHARE_TO_QQ_IMAGE_URL, getShareContent().getAppIcon());
+            params.putString(com.tencent.connect.share.QQShare.SHARE_TO_QQ_IMAGE_LOCAL_URL, ResConvert.resToFile(mActivity, getShareContent().getAppIcon()));
         }
         params.putString(com.tencent.connect.share.QQShare.SHARE_TO_QQ_APP_NAME,  getShareContent().getAppName());
 //        params.putInt(QQShare.SHARE_TO_QQ_EXT_INT,  "其他附加功能");
 
-        Tencent tencent = Tencent.createInstance(SocialConfig.getTencentId(), mActivity);
+        Tencent tencent = Tencent.createInstance(Social.getTencentId(), mActivity);
         tencent.shareToQQ(mActivity, params, mQQCallbackListener);
     }
 
@@ -59,7 +61,7 @@ public class QQShare extends ShareApi{
 
         @Override
         public void onCancel() {
-
+            callbackShareFail(mActivity.getString(R.string.share_cancel));
         }
     };
 

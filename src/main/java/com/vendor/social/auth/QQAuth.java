@@ -7,7 +7,7 @@ import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 import com.vendor.social.AuthApi;
-import com.vendor.social.SocialConfig;
+import com.vendor.social.Social;
 import com.vendor.social.model.AuthType;
 import com.vendor.social.model.User;
 
@@ -32,7 +32,7 @@ public class QQAuth extends AuthApi {
 
     @Override
     public void doOauthVerify() {
-        mTencent = com.tencent.tauth.Tencent.createInstance(SocialConfig.getTencentId(), mActivity);
+        mTencent = com.tencent.tauth.Tencent.createInstance(Social.getTencentId(), mActivity);
 
         mTencent.login(mActivity, SCOPE, listener);
     }

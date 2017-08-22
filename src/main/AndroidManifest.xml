@@ -1,6 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.vendor.social">
-
+    package="com.vendor.social" >
     <application android:allowBackup="true">
 
         <activity
@@ -12,56 +11,62 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <!-- 分享相关 -->
+        <!-- 微博 -->
+        <activity android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" >
+        </activity>
+        <!-- 微信 -->
+        <receiver
+            android:name=".pay.extra.AppRegister"
+            android:permission="com.tencent.mm.plugin.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+            </intent-filter>
+        </receiver>
+
+        <!-- QQ -->
+        <meta-data
+            android:name="TENCENT_ID"
+            android:value="${TENCENT_ID}"/>
+        <!-- 微信 -->
+        <meta-data
+            android:name="WEIXIN_ID"
+            android:value="${WEIXIN_ID}"/>
+        <meta-data
+            android:name="WEIXIN_SECRET"
+            android:value="${WEIXIN_SECRET}"/>
+
+        <!-- Tencent -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent${TENCENT_ID}" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!--<activity-->
+            <!--android:name=".wxapi.WXEntryActivity"-->
+            <!--android:exported="true"-->
+            <!--android:launchMode="singleTop"/>-->
+
+        <!--&lt;!&ndash; 支付相关 &ndash;&gt;-->
+        <!--<activity-->
+            <!--android:name=".wxapi.WXPayEntryActivity"-->
+            <!--android:exported="true"-->
+            <!--android:launchMode="singleTop"/>-->
     </application>
-
-    <!-- 分享相关 -->
-    <!--&lt;!&ndash; Tencent &ndash;&gt;-->
-    <!--<activity-->
-        <!--android:name="com.tencent.tauth.AuthActivity"-->
-        <!--android:launchMode="singleTask"-->
-        <!--android:noHistory="true" >-->
-        <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.VIEW" />-->
-            <!--<category android:name="android.intent.category.DEFAULT" />-->
-            <!--<category android:name="android.intent.category.BROWSABLE" />-->
-            <!--<data android:scheme="1104988094" />-->
-        <!--</intent-filter>-->
-    <!--</activity>-->
-    <!--<activity-->
-        <!--android:name="com.tencent.connect.common.AssistActivity"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
-    <!--&lt;!&ndash; 微博 &ndash;&gt;-->
-    <!--<activity android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"-->
-        <!--android:configChanges="keyboardHidden|orientation"-->
-        <!--android:windowSoftInputMode="adjustResize"-->
-        <!--android:exported="false" >-->
-    <!--</activity>-->
-    <!--&lt;!&ndash; 微信 &ndash;&gt;-->
-    <!--<receiver-->
-        <!--android:name=".AppRegister"-->
-        <!--android:permission="com.tencent.mm.plugin.permission.SEND" >-->
-        <!--<intent-filter>-->
-            <!--<action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />-->
-        <!--</intent-filter>-->
-    <!--</receiver>-->
-
-    <!--<activity-->
-        <!--android:name=".wxapi.WXEntryActivity"-->
-        <!--android:exported="true"-->
-        <!--android:launchMode="singleTop"/>-->
-    <!---->
-
-    <!-- 支付相关 -->
-    <!--<activity-->
-        <!--android:name=".wxapi.WXPayEntryActivity"-->
-        <!--android:exported="true"-->
-        <!--android:launchMode="singleTop"/>-->
-
-    <!--<receiver-->
-        <!--android:name="net.sourceforge.simcpux.AppRegister">-->
-        <!--<intent-filter>-->
-            <!--<action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />-->
-        <!--</intent-filter>-->
-    <!--</receiver>-->
 </manifest>

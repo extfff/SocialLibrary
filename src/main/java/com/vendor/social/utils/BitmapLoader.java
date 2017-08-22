@@ -2,6 +2,7 @@ package com.vendor.social.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -26,20 +27,17 @@ public class BitmapLoader {
         mContext = context;
         mShareContent = content;
 
-        String icon;
         List<String> iconList = mShareContent.getIconList();
         if(iconList != null && iconList.size() > 0){
-            icon = iconList.get(0);
+            loadImage(iconList.get(0), l);
         }else {
-            icon = "drawable://" +  mShareContent.getAppIcon();
+            l.onResult(ResConvert.resToBitmap(context, mShareContent.getAppIcon()));
         }
-
-        loadImage(icon, l);
     }
 
     private void loadImage(final String icon, final OnLoadImageListener l){
         Glide.with(mContext)
-            .load("http://somefakeurl.com/fakeImage.jpeg")
+            .load(icon)
             .asBitmap()
             .fitCenter()
             .into(new SimpleTarget<Bitmap>() {

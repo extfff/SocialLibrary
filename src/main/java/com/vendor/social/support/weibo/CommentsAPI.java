@@ -18,6 +18,7 @@ package com.vendor.social.support.weibo;
 
 import android.content.Context;
 import android.util.SparseArray;
+
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.net.WeiboParameters;
@@ -381,7 +382,7 @@ public class CommentsAPI extends AbsOpenAPI {
     }
 
     private WeiboParameters buildReplyParams(long cid, long id, String comment, boolean without_mention,
-            boolean comment_ori) {
+                                             boolean comment_ori) {
         WeiboParameters params = new WeiboParameters(mAppKey);
         params.put("cid", cid);
         params.put("id", id);

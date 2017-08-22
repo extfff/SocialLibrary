@@ -16,10 +16,10 @@
 
 package com.vendor.social.support.weibo.models;
 
-import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * 好友分组信息。

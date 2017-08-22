@@ -16,13 +16,13 @@
 
 package com.vendor.social.support.weibo.models;
 
-import java.util.ArrayList;
+import android.text.TextUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.text.TextUtils;
+import java.util.ArrayList;
 
 /**
  * 地理信息结构体。
