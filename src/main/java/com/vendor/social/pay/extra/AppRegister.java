@@ -12,9 +12,7 @@ public class AppRegister extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		final IWXAPI api = WXAPIFactory.createWXAPI(context, Social.getWeiboAppKey());
-
-		//将该app注册到微信
-		api.registerApp(Social.getWeixinId());
+		IWXAPI api = WXAPIFactory.createWXAPI(context, Social.getWeixinId());
+		api.registerApp(Social.getWeixinId()); //将该app注册到微信
 	}
 }

@@ -1,4 +1,4 @@
-package com.vendor.social.share;
+package com.vendor.social.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -47,7 +47,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-public class Util {
+public class BitmapConvert {
 	
 	private static final String TAG = "SDK_Sample.Util";
 	
