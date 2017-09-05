@@ -12,7 +12,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 <B>调用步骤：</B><br><br>
 **1、AndroidManifest.xml配置**
 
-		<!-- 微信分享 -->
+	<!-- 微信分享 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:launchMode="singleTop"
