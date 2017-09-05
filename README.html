@@ -23,45 +23,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 <B>调用步骤：</B><br><br>
 <strong>1、AndroidManifest.xml配置</strong></p>
 
-<pre><code>    &lt;!-- 微博 --&gt;
-    &lt;meta-data
-        android:name=&quot;WEIBO_APP_KEY&quot;
-        android:value=&quot;${WEIBO_APP_KEY}&quot;/&gt;
-    &lt;meta-data
-        android:name=&quot;WEIBO_REDIRECT_URL&quot;
-        android:value=&quot;${WEIBO_REDIRECT_URL}&quot;/&gt;
-    &lt;meta-data
-        android:name=&quot;WEIBO_SCOPE&quot;
-        android:value=&quot;${WEIBO_SCOPE}&quot;/&gt;
-    &lt;!-- QQ --&gt;
-    &lt;meta-data
-        android:name=&quot;TENCENT_ID&quot;
-        android:value=&quot;${TENCENT_ID}&quot;/&gt;
-    &lt;!-- 微信 --&gt;
-    &lt;meta-data
-        android:name=&quot;WEIXIN_ID&quot;
-        android:value=&quot;${WEIXIN_ID}&quot;/&gt;
-    &lt;meta-data
-        android:name=&quot;WEIXIN_SECRET&quot;
-        android:value=&quot;${WEIXIN_SECRET}&quot;/&gt;
-    &lt;!-- 微信支付 --&gt;
-    &lt;meta-data
-        android:name=&quot;WEIXIN_PAY_MCH_ID&quot;
-        android:value=&quot;${WEIXIN_PAY_MCH_ID}&quot;/&gt;
-    &lt;meta-data
-        android:name=&quot;WEIXIN_PAY_SECRET&quot;
-        android:value=&quot;${WEIXIN_PAY_SECRET}&quot;/&gt;
-    &lt;!-- 支付宝支付 --&gt;
-    &lt;meta-data
-        android:name=&quot;ALIPAY_PARTNER&quot;
-        android:value=&quot;${ALIPAY_PARTNER}&quot;/&gt;
-    &lt;meta-data
-        android:name=&quot;ALIPAY_SELLER&quot;
-        android:value=&quot;${ALIPAY_SELLER}&quot;/&gt;
-    &lt;meta-data
-        android:name=&quot;ALIPAY_RSA_PRIVATE&quot;
-        android:value=&quot;${ALIPAY_RSA_PRIVATE}&quot;/&gt;
-    &lt;!-- 微信分享 --&gt;
+<pre><code>    &lt;!-- 微信分享 --&gt;
     &lt;activity
         android:name=&quot;.wxapi.WXEntryActivity&quot;
         android:launchMode=&quot;singleTop&quot;
@@ -213,8 +175,8 @@ mShareApi = ShareApi.doShare(CircleDetailActivity.this, ShareType.QQ, shareConte
 
 //如有qq、qq空间分享需要在调用页面的onActivityResult添加
 
-   @Override
-    protected void onActivityResult(int requestCode, int    resultCode, Intent data) {
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     mShareApi.onActivityResult(requestCode, resultCode, data);
 }

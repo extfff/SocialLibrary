@@ -12,45 +12,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 <B>调用步骤：</B><br><br>
 **1、AndroidManifest.xml配置**
 
-	<!-- 微博 -->
-        <meta-data
-            android:name="WEIBO_APP_KEY"
-            android:value="${WEIBO_APP_KEY}"/>
-        <meta-data
-            android:name="WEIBO_REDIRECT_URL"
-            android:value="${WEIBO_REDIRECT_URL}"/>
-        <meta-data
-            android:name="WEIBO_SCOPE"
-            android:value="${WEIBO_SCOPE}"/>
-        <!-- QQ -->
-        <meta-data
-            android:name="TENCENT_ID"
-            android:value="${TENCENT_ID}"/>
-        <!-- 微信 -->
-        <meta-data
-            android:name="WEIXIN_ID"
-            android:value="${WEIXIN_ID}"/>
-        <meta-data
-            android:name="WEIXIN_SECRET"
-            android:value="${WEIXIN_SECRET}"/>
-        <!-- 微信支付 -->
-        <meta-data
-            android:name="WEIXIN_PAY_MCH_ID"
-            android:value="${WEIXIN_PAY_MCH_ID}"/>
-        <meta-data
-            android:name="WEIXIN_PAY_SECRET"
-            android:value="${WEIXIN_PAY_SECRET}"/>
-        <!-- 支付宝支付 -->
-        <meta-data
-            android:name="ALIPAY_PARTNER"
-            android:value="${ALIPAY_PARTNER}"/>
-        <meta-data
-            android:name="ALIPAY_SELLER"
-            android:value="${ALIPAY_SELLER}"/>
-        <meta-data
-            android:name="ALIPAY_RSA_PRIVATE"
-            android:value="${ALIPAY_RSA_PRIVATE}"/>
-        <!-- 微信分享 -->
+		<!-- 微信分享 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:launchMode="singleTop"
