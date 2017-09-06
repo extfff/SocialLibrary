@@ -28,44 +28,44 @@
             </intent-filter>
         </receiver>
 
-        <!-- 微博 -->
-        <meta-data
-            android:name="WEIBO_APP_KEY"
-            android:value="${WEIBO_APP_KEY}"/>
-        <meta-data
-            android:name="WEIBO_REDIRECT_URL"
-            android:value="${WEIBO_REDIRECT_URL}"/>
-        <meta-data
-            android:name="WEIBO_SCOPE"
-            android:value="${WEIBO_SCOPE}"/>
-        <!-- QQ -->
-        <meta-data
-            android:name="TENCENT_ID"
-            android:value="${TENCENT_ID}"/>
-        <!-- 微信 -->
-        <meta-data
-            android:name="WEIXIN_ID"
-            android:value="${WEIXIN_ID}"/>
-        <meta-data
-            android:name="WEIXIN_SECRET"
-            android:value="${WEIXIN_SECRET}"/>
-        <!-- 微信支付 -->
-        <meta-data
-            android:name="WEIXIN_PAY_MCH_ID"
-            android:value="${WEIXIN_PAY_MCH_ID}"/>
-        <meta-data
-            android:name="WEIXIN_PAY_SECRET"
-            android:value="${WEIXIN_PAY_SECRET}"/>
-        <!-- 支付宝支付 -->
-        <meta-data
-            android:name="ALIPAY_PARTNER"
-            android:value="${ALIPAY_PARTNER}"/>
-        <meta-data
-            android:name="ALIPAY_SELLER"
-            android:value="${ALIPAY_SELLER}"/>
-        <meta-data
-            android:name="ALIPAY_RSA_PRIVATE"
-            android:value="${ALIPAY_RSA_PRIVATE}"/>
+        <!--&lt;!&ndash; 微博 &ndash;&gt;-->
+        <!--<meta-data-->
+            <!--android:name="WEIBO_APP_KEY"-->
+            <!--android:value="${WEIBO_APP_KEY}"/>-->
+        <!--<meta-data-->
+            <!--android:name="WEIBO_REDIRECT_URL"-->
+            <!--android:value="${WEIBO_REDIRECT_URL}"/>-->
+        <!--<meta-data-->
+            <!--android:name="WEIBO_SCOPE"-->
+            <!--android:value="${WEIBO_SCOPE}"/>-->
+        <!--&lt;!&ndash; QQ &ndash;&gt;-->
+        <!--<meta-data-->
+            <!--android:name="TENCENT_ID"-->
+            <!--android:value="${TENCENT_ID}"/>-->
+        <!--&lt;!&ndash; 微信 &ndash;&gt;-->
+        <!--<meta-data-->
+            <!--android:name="WEIXIN_ID"-->
+            <!--android:value="${WEIXIN_ID}"/>-->
+        <!--<meta-data-->
+            <!--android:name="WEIXIN_SECRET"-->
+            <!--android:value="${WEIXIN_SECRET}"/>-->
+        <!--&lt;!&ndash; 微信支付 &ndash;&gt;-->
+        <!--<meta-data-->
+            <!--android:name="WEIXIN_PAY_MCH_ID"-->
+            <!--android:value="${WEIXIN_PAY_MCH_ID}"/>-->
+        <!--<meta-data-->
+            <!--android:name="WEIXIN_PAY_SECRET"-->
+            <!--android:value="${WEIXIN_PAY_SECRET}"/>-->
+        <!--&lt;!&ndash; 支付宝支付 &ndash;&gt;-->
+        <!--<meta-data-->
+            <!--android:name="ALIPAY_PARTNER"-->
+            <!--android:value="${ALIPAY_PARTNER}"/>-->
+        <!--<meta-data-->
+            <!--android:name="ALIPAY_SELLER"-->
+            <!--android:value="${ALIPAY_SELLER}"/>-->
+        <!--<meta-data-->
+            <!--android:name="ALIPAY_RSA_PRIVATE"-->
+            <!--android:value="${ALIPAY_RSA_PRIVATE}"/>-->
 
         <!-- Tencent -->
         <activity
@@ -76,7 +76,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="tencent${TENCENT_ID}" />
+                <!--<data android:scheme="tencent${TENCENT_ID}" />-->
             </intent-filter>
         </activity>
 
