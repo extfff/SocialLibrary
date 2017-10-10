@@ -2,6 +2,7 @@ package com.vendor.social.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -20,6 +21,8 @@ public class BitmapLoader {
 
     private ShareContent mShareContent;
 
+    private OnLoadImageListener mOnLoadImageListener;
+
     /**
      * 选取规则 如果iconList不为空 取appIcon
      */
@@ -35,7 +38,9 @@ public class BitmapLoader {
         }
     }
 
-    private void loadImage(final String icon, final OnLoadImageListener l){
+    private void loadImage(final String icon, OnLoadImageListener l){
+        mOnLoadImageListener = l;
+
         Glide.with(mContext)
             .load(icon)
             .asBitmap()
@@ -43,13 +48,23 @@ public class BitmapLoader {
             .into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                    if(resource != null){
-                        l.onResult(resource);
-                    } else if(!icon.startsWith("drawable://")){
-                        loadImage("drawable://" +  mShareContent.getAppIcon(), l);
-                    } else {
-                        l.onResult(null);
+                    if(mOnLoadImageListener != null) {
+                        if (resource != null) {
+                            mOnLoadImageListener.onResult(resource);
+                        } else if (!icon.startsWith("drawable://")) {
+                            loadImage("drawable://" + mShareContent.getAppIcon(), mOnLoadImageListener);
+                        } else {
+                            mOnLoadImageListener.onResult(null);
+                        }
                     }
+                }
+
+                @Override
+                public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                    if(mOnLoadImageListener != null) {
+                        mOnLoadImageListener.onResult(null);
+                    }
+                    mOnLoadImageListener = null;  //下载失败会触发重试 我们不需要这个操作
                 }
             });
     }

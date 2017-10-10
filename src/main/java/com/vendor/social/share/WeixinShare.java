@@ -35,32 +35,31 @@ public class WeixinShare extends ShareApi{
         new BitmapLoader().loadIconBitmap(mActivity, getShareContent(), new BitmapLoader.OnLoadImageListener() {
             @Override
             public void onResult(Bitmap bitmap) {
-                if(bitmap != null){
-                    IWXAPI api = WXAPIFactory.createWXAPI(mActivity, Social.getWeixinId(), true);
-                    api.registerApp(Social.getWeixinId());
+                IWXAPI api = WXAPIFactory.createWXAPI(mActivity, Social.getWeixinId(), true);
+                api.registerApp(Social.getWeixinId());
 
-                    if(!api.isWXAppInstalled()) {
-                        Toast.makeText(mActivity, R.string.social_fail_weixin_un_install, Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                if(!api.isWXAppInstalled()) {
+                    Toast.makeText(mActivity, R.string.social_fail_weixin_un_install, Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                    WXWebpageObject webpage = new WXWebpageObject();
-                    webpage.webpageUrl = getShareContent().getTargetUrl();
-                    WXMediaMessage msg = new WXMediaMessage(webpage);
-                    msg.title = getShareContent().getTitle();//不能太长，否则微信会提示出错。不过没验证过具体能输入多长。
-                    msg.description = getShareContent().getText();
+                WXWebpageObject webpage = new WXWebpageObject();
+                webpage.webpageUrl = getShareContent().getTargetUrl();
+                WXMediaMessage msg = new WXMediaMessage(webpage);
+                msg.title = getShareContent().getTitle();//不能太长，否则微信会提示出错。不过没验证过具体能输入多长。
+                msg.description = getShareContent().getText();
+
+                if(bitmap != null) {
                     Bitmap thumb = Bitmap.createScaledBitmap(bitmap, THUMB_SIZE, THUMB_SIZE, true);
                     msg.thumbData = BitmapConvert.bmpToByteArray(thumb, true);
-
-                    SendMessageToWX.Req req = new SendMessageToWX.Req();
-                    req.transaction = buildTransaction("webpage");
-                    req.message = msg;
-                    req.scene = SendMessageToWX.Req.WXSceneSession;
-//                    req.openId = Social.getWeixinId();
-                    api.sendReq(req);
-                }else{
-                    callbackShareFail("ImageLoader load image fail");
                 }
+
+                SendMessageToWX.Req req = new SendMessageToWX.Req();
+                req.transaction = buildTransaction("webpage");
+                req.message = msg;
+                req.scene = SendMessageToWX.Req.WXSceneSession;
+//                    req.openId = Social.getWeixinId();
+                api.sendReq(req);
             }
         });
     }
