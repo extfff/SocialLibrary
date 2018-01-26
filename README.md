@@ -122,27 +122,27 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 
 **4、调用第三方登录-适用全部情况**
 
-        AuthApi.doOauthVerify(this, AuthType.WEIXIN, new AuthApi.OnAuthListener() {
-            @Override
-            public void onComplete(int type, com.sicinfo.sippl.social.model.User user) {
-                ToastUtil.show(LoginActivity.this, "Login succ");
-            }
+    AuthApi.doOauthVerify(this, AuthType.WEIXIN, new AuthApi.OnAuthListener() {
+        @Override
+        public void onComplete(int type, com.sicinfo.sippl.social.model.User user) {
+            ToastUtil.show(LoginActivity.this, "Login succ");
+        }
 
-            @Override
-            public void onError(int type, String error) {
-                ToastUtil.show(LoginActivity.this, error);
-            }
+        @Override
+        public void onError(int type, String error) {
+            ToastUtil.show(LoginActivity.this, error);
+        }
 
-            @Override
-            public void onCancel(int type) {
-                ToastUtil.show(LoginActivity.this, "Login cancel");  
-            }
-        });
+        @Override
+        public void onCancel(int type) {
+            ToastUtil.show(LoginActivity.this, "Login cancel");  
+        }
+    });
 
 	
-	//如有微信登录需要配置如下环境
-	//在项目包名底下添加wxapi包,并新建WXEntryActivity extends WXBaseActivity
-	//并在AndroidManifest.xml中声明此页面（具体写法可看Library的AndroidManifest.xml中的注释）
+    //如有微信登录需要配置如下环境
+    //在项目包名底下添加wxapi包,并新建WXEntryActivity extends WXBaseActivity
+    //并在AndroidManifest.xml中声明此页面（具体写法可看Library的AndroidManifest.xml中的注释）
 
 **5、调用支付宝支付**
 
@@ -205,17 +205,17 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
         .setIcon(mCircle.imgs.get(0).thumbnail)
         .build();
 
-	mShareApi = ShareApi.doShare(CircleDetailActivity.this, ShareType.QQ, shareContent, CircleDetailActivity.this);
+    mShareApi = ShareApi.doShare(CircleDetailActivity.this, ShareType.QQ, shareContent, CircleDetailActivity.this);
 
-	//如有qq、qq空间分享需要在调用页面的onActivityResult添加
+    //如有qq、qq空间分享需要在调用页面的onActivityResult添加
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mShareApi.onActivityResult(requestCode, resultCode, data);
     }
 	
-	//如有微信分享需要配置如下环境
-	//在项目包名底下添加wxapi包,并新建WXEntryActivity extends WXBaseActivity
-	//并在AndroidManifest.xml中声明此页面（具体写法可看Library的AndroidManifest.xml中的注释）
+    //如有微信分享需要配置如下环境
+    //在项目包名底下添加wxapi包,并新建WXEntryActivity extends WXBaseActivity
+    //并在AndroidManifest.xml中声明此页面（具体写法可看Library的AndroidManifest.xml中的注释）
 
 有问题联系：QQ群 254202293
