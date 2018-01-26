@@ -9,6 +9,12 @@ Library更新了jar包，截止2017-05-13，除微博最新的aar貌似要主工
 分享：
 qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 <br><br><br>
+<B>集成方法：</B>
+
+    allprojects {        repositories {            maven { url "https://raw.githubusercontent.com/extfff/repos/master" }        }    }
+
+    dependencies {        compile 'com.vendor:social:1.0'    }
+
 <B>调用步骤：</B><br><br>
 **1、Application配置**
 
