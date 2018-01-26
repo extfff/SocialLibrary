@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.vendor.socialsample">
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 根据需要添加 -->
+        <!-- 微博 -->
+        <meta-data
+            android:name="WEIBO_APP_KEY"
+            android:value="${WEIBO_APP_KEY}" />
+        <meta-data
+            android:name="WEIBO_REDIRECT_URL"
+            android:value="${WEIBO_REDIRECT_URL}" />
+        <meta-data
+            android:name="WEIBO_SCOPE"
+            android:value="${WEIBO_SCOPE}" />
+        <!-- QQ -->
+        <meta-data
+            android:name="TENCENT_ID"
+            android:value="${TENCENT_ID}" />
+        <!-- 微信 -->
+        <meta-data
+            android:name="WEIXIN_ID"
+            android:value="${WEIXIN_ID}" />
+        <meta-data
+            android:name="WEIXIN_SECRET"
+            android:value="${WEIXIN_SECRET}" />
+        <!-- 微信支付 -->
+        <meta-data
+            android:name="WEIXIN_PAY_MCH_ID"
+            android:value="${WEIXIN_PAY_MCH_ID}" />
+        <meta-data
+            android:name="WEIXIN_PAY_SECRET"
+            android:value="${WEIXIN_PAY_SECRET}" />
+        <!-- 支付宝支付 -->
+        <meta-data
+            android:name="ALIPAY_PARTNER"
+            android:value="${ALIPAY_PARTNER}" />
+        <meta-data
+            android:name="ALIPAY_SELLER"
+            android:value="${ALIPAY_SELLER}" />
+        <meta-data
+            android:name="ALIPAY_RSA_PRIVATE"
+            android:value="${ALIPAY_RSA_PRIVATE}" />
+        <!-- 微信分享 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent" />
+        <!-- 微信支付 -->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent" />
+    </application>
+
+</manifest>
