@@ -1,7 +1,7 @@
 # SocialLibrary
 欢迎大家使用。<br>
 Library更新了jar包，截止2017-05-13，除微博最新的aar貌似要主工程才可以集成以外，其他的都是最新的。<br><br>
-<B>主要提供内容：</B><br>
+<B>主要提供服务：</B><br>
 支付：
 微信支付，支付宝支付，银联如需请联系，暂不封装入<br>
 登录：
@@ -12,7 +12,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 <B>调用步骤：</B><br><br>
 **1、Application配置**
 
-	@Override
+    @Override
     public void onCreate() {
         super.onCreate();
 
@@ -21,59 +21,59 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 
 **2、AndroidManifest.xml配置**
 
-	<!-- 根据需要添加 -->
-	<!-- 微博 -->
-        <meta-data
-            android:name="WEIBO_APP_KEY"
-            android:value="${WEIBO_APP_KEY}"/>
-        <meta-data
-            android:name="WEIBO_REDIRECT_URL"
-            android:value="${WEIBO_REDIRECT_URL}"/>
-        <meta-data
-            android:name="WEIBO_SCOPE"
-            android:value="${WEIBO_SCOPE}"/>
-        <!-- QQ -->
-        <meta-data
-            android:name="TENCENT_ID"
-            android:value="${TENCENT_ID}"/>
-        <!-- 微信 -->
-        <meta-data
-            android:name="WEIXIN_ID"
-            android:value="${WEIXIN_ID}"/>
-        <meta-data
-            android:name="WEIXIN_SECRET"
-            android:value="${WEIXIN_SECRET}"/>
-        <!-- 微信支付 -->
-        <meta-data
-            android:name="WEIXIN_PAY_MCH_ID"
-            android:value="${WEIXIN_PAY_MCH_ID}"/>
-        <meta-data
-            android:name="WEIXIN_PAY_SECRET"
-            android:value="${WEIXIN_PAY_SECRET}"/>
-        <!-- 支付宝支付 -->
-        <meta-data
-            android:name="ALIPAY_PARTNER"
-            android:value="${ALIPAY_PARTNER}"/>
-        <meta-data
-            android:name="ALIPAY_SELLER"
-            android:value="${ALIPAY_SELLER}"/>
-        <meta-data
-            android:name="ALIPAY_RSA_PRIVATE"
-            android:value="${ALIPAY_RSA_PRIVATE}"/>
-        <!-- 微信分享 -->
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:launchMode="singleTop"
-            android:exported="true"
-            android:theme="@android:style/Theme.Translucent"
-            android:screenOrientation="portrait" />
-        <!-- 微信支付 -->
-        <activity
-            android:name=".wxapi.WXPayEntryActivity"
-            android:launchMode="singleTop"
-            android:exported="true"
-            android:theme="@android:style/Theme.Translucent"
-            android:screenOrientation="portrait" />
+    <!-- 根据需要添加 -->
+    <!-- 微博 -->
+    <meta-data
+        android:name="WEIBO_APP_KEY"
+        android:value="${WEIBO_APP_KEY}"/>
+    <meta-data
+        android:name="WEIBO_REDIRECT_URL"
+        android:value="${WEIBO_REDIRECT_URL}"/>
+    <meta-data
+        android:name="WEIBO_SCOPE"
+        android:value="${WEIBO_SCOPE}"/>
+    <!-- QQ -->
+    <meta-data
+        android:name="TENCENT_ID"
+        android:value="${TENCENT_ID}"/>
+    <!-- 微信 -->
+    <meta-data
+        android:name="WEIXIN_ID"
+        android:value="${WEIXIN_ID}"/>
+    <meta-data
+        android:name="WEIXIN_SECRET"
+        android:value="${WEIXIN_SECRET}"/>
+    <!-- 微信支付 -->
+    <meta-data
+        android:name="WEIXIN_PAY_MCH_ID"
+        android:value="${WEIXIN_PAY_MCH_ID}"/>
+    <meta-data
+        android:name="WEIXIN_PAY_SECRET"
+        android:value="${WEIXIN_PAY_SECRET}"/>
+    <!-- 支付宝支付 -->
+    <meta-data
+        android:name="ALIPAY_PARTNER"
+        android:value="${ALIPAY_PARTNER}"/>
+    <meta-data
+        android:name="ALIPAY_SELLER"
+        android:value="${ALIPAY_SELLER}"/>
+    <meta-data
+        android:name="ALIPAY_RSA_PRIVATE"
+        android:value="${ALIPAY_RSA_PRIVATE}"/>
+    <!-- 微信分享 -->
+    <activity
+        android:name=".wxapi.WXEntryActivity"
+        android:launchMode="singleTop"
+        android:exported="true"
+        android:theme="@android:style/Theme.Translucent"
+        android:screenOrientation="portrait" />
+    <!-- 微信支付 -->
+    <activity
+        android:name=".wxapi.WXPayEntryActivity"
+        android:launchMode="singleTop"
+        android:exported="true"
+        android:theme="@android:style/Theme.Translucent"
+        android:screenOrientation="portrait" />
 
 **3、build.gradle配置**
 
@@ -83,31 +83,31 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
         debug {
             signingConfig signingConfigs.myConfigs
             manifestPlaceholders = [  //debug环境
-                    //微博分享
-                    WEIBO_APP_KEY: "请输入申请的密钥",
-                    WEIBO_REDIRECT_URL: "请输入申请的密钥",
-                    WEIBO_SCOPE: "请输入申请的密钥",
+                //微博分享
+                WEIBO_APP_KEY: "请输入申请的密钥",
+                WEIBO_REDIRECT_URL: "请输入申请的密钥",
+                WEIBO_SCOPE: "请输入申请的密钥",
 
-                    //腾讯qq分享
-                    TENCENT_ID: "请输入申请的密钥",
+                //腾讯qq分享
+                TENCENT_ID: "请输入申请的密钥",
 
-                    //微信分享
-                    WEIXIN_ID: "请输入申请的密钥",
-                    WEIXIN_SECRET: "请输入申请的密钥",
+                //微信分享
+                WEIXIN_ID: "请输入申请的密钥",
+                WEIXIN_SECRET: "请输入申请的密钥",
 
-                    //微信支付
-                    //商户号
-                    WEIXIN_PAY_MCH_ID: "请输入申请的密钥",
-                    //API密钥，在商户平台设置
-                    WEIXIN_PAY_SECRET: "请输入申请的密钥",
+                //微信支付
+                //商户号
+                WEIXIN_PAY_MCH_ID: "请输入申请的密钥",
+                //API密钥，在商户平台设置
+                WEIXIN_PAY_SECRET: "请输入申请的密钥",
 
-                    //支付宝支付
-                    //商户PID
-                    ALIPAY_PARTNER: "请输入申请的密钥",
-                    //商户收款账号
-                    ALIPAY_SELLER: "请输入申请的密钥",
-                    //商户私钥，pkcs8格式
-                    ALIPAY_RSA_PRIVATE: "请输入申请的密钥"
+                //支付宝支付
+                //商户PID
+                ALIPAY_PARTNER: "请输入申请的密钥",
+                //商户收款账号
+                ALIPAY_SELLER: "请输入申请的密钥",
+                //商户私钥，pkcs8格式
+                ALIPAY_RSA_PRIVATE: "请输入申请的密钥"
             ]
         }
 
@@ -115,32 +115,29 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [  //release环境
-                    //...同debug
+                //...同debug
             ]
         }
 
 
 **4、调用第三方登录-适用全部情况**
 
-	AuthApi.doOauthVerify(this, AuthType.WEIXIN, new AuthApi.OnAuthListener() {
-                    @Override
-                    public void onComplete(int type, com.sicinfo.sippl.social.model.User user) {
-                        dismissProgress();
-                        DaoSharedPreferences.getInstance().setLoginOpenId(user.openid);
-                        mUserBiz.loginWx(user.openid, user.nickName, user.avatar, onHttpListener);
-                    }
+        AuthApi.doOauthVerify(this, AuthType.WEIXIN, new AuthApi.OnAuthListener() {
+            @Override
+            public void onComplete(int type, com.sicinfo.sippl.social.model.User user) {
+                ToastUtil.show(LoginActivity.this, "Login succ");
+            }
 
-                    @Override
-                    public void onError(int type, String error) {
-                        ToastUtil.show(LoginActivity.this, error);
-                        dismissProgress();
-                    }
+            @Override
+            public void onError(int type, String error) {
+                ToastUtil.show(LoginActivity.this, error);
+            }
 
-                    @Override
-                    public void onCancel(int type) {
-                        dismissProgress();
-                    }
-                });
+            @Override
+            public void onCancel(int type) {
+                ToastUtil.show(LoginActivity.this, "Login cancel");  
+            }
+        });
 
 	
 	//如有微信登录需要配置如下环境
@@ -194,24 +191,23 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 
 **7、调用第三方分享-适用全部情况**
 
-	mShareApi = new ShareApi(this);
-       mShareApi.setOnShareListener(this);
+    mShareApi = new ShareApi(this);
+    mShareApi.setOnShareListener(this);
 
-       String title = App.getInstance().isLogined() ? App.getInstance().getUser().realname : getString(R.string.app_name);
+    String title = App.getInstance().isLogined() ? App.getInstance().getUser().realname : getString(R.string.app_name);
 
-       final ShareContent shareContent = new ShareContent.Builder()
-                .setAppName(getString(R.string.app_name))
-                .setTitle(getString(R.string.share_circle_title, title, mCircle.name))
-                .setText(mCircle.introduce)
-                .setTargetUrl(String.format(AppConfig.SHARE_CIRCLE_URL, mCircle.circle_id))
-                .setAppIcon(R.mipmap.ic_launcher)
-                .setIcon(mCircle.imgs.get(0).thumbnail)
-                .build();
+    final ShareContent shareContent = new ShareContent.Builder()
+        .setAppName(getString(R.string.app_name))
+        .setTitle(getString(R.string.share_circle_title, title, mCircle.name))
+        .setText(mCircle.introduce)
+        .setTargetUrl(String.format(AppConfig.SHARE_CIRCLE_URL, mCircle.circle_id))
+        .setAppIcon(R.mipmap.ic_launcher)
+        .setIcon(mCircle.imgs.get(0).thumbnail)
+        .build();
 
 	mShareApi = ShareApi.doShare(CircleDetailActivity.this, ShareType.QQ, shareContent, CircleDetailActivity.this);
 
 	//如有qq、qq空间分享需要在调用页面的onActivityResult添加
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
