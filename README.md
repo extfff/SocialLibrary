@@ -195,18 +195,18 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 **7、调用第三方分享-适用全部情况**
 
 	mShareApi = new ShareApi(this);
-            mShareApi.setOnShareListener(this);
+       mShareApi.setOnShareListener(this);
 
-            String title = App.getInstance().isLogined() ? App.getInstance().getUser().realname : getString(R.string.app_name);
+       String title = App.getInstance().isLogined() ? App.getInstance().getUser().realname : getString(R.string.app_name);
 
-            final ShareContent shareContent = new ShareContent.Builder()
-                    .setAppName(getString(R.string.app_name))
-                    .setTitle(getString(R.string.share_circle_title, title, mCircle.name))
-                    .setText(mCircle.introduce)
-                    .setTargetUrl(String.format(AppConfig.SHARE_CIRCLE_URL, mCircle.circle_id))
-                    .setAppIcon(R.mipmap.ic_launcher)
-                    .setIcon(mCircle.imgs.get(0).thumbnail)
-                    .build();
+       final ShareContent shareContent = new ShareContent.Builder()
+                .setAppName(getString(R.string.app_name))
+                .setTitle(getString(R.string.share_circle_title, title, mCircle.name))
+                .setText(mCircle.introduce)
+                .setTargetUrl(String.format(AppConfig.SHARE_CIRCLE_URL, mCircle.circle_id))
+                .setAppIcon(R.mipmap.ic_launcher)
+                .setIcon(mCircle.imgs.get(0).thumbnail)
+                .build();
 
 	mShareApi = ShareApi.doShare(CircleDetailActivity.this, ShareType.QQ, shareContent, CircleDetailActivity.this);
 
