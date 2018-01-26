@@ -155,7 +155,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 
         try {
             JSONObject jsonObject = new JSONObject(entity);
-			//服务端拼凑 客户端拼凑的Library也有提供，不过不放出使用方法，毕竟已经过时，如需要请联系作者
+	     //服务端拼凑 客户端拼凑的Library也有提供，不过不放出使用方法，毕竟已经过时，如需要请联系作者
             alipayApi.pay(jsonObject.getString("pay_message"));  
         } catch (JSONException e) {
             e.printStackTrace();
@@ -169,7 +169,8 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
         wxApi.setOnPayListener(l);
 
         try {
-            JSONObject jsonObject = new JSONObject(entity);  //服务端获取 客户端拼凑的Library也有提供，不过不放出使用方法，毕竟已经过时，如需要请联系作者
+	     //服务端获取 客户端拼凑的Library也有提供，不过不放出使用方法，毕竟已经过时，如需要请联系作者
+            JSONObject jsonObject = new JSONObject(entity);  
             jsonObject = jsonObject.getJSONObject("pay_message");
 
             WxPayContent req = new WxPayContent();
