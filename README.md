@@ -144,7 +144,8 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 
 	
 	//如有微信登录需要配置如下环境
-	//在项目包名底下添加wxapi包,并新建WXEntryActivity extends WXBaseActivity，并在AndroidManifest.xml中声明此页面（具体写法可看Library的AndroidManifest.xml中的注释）
+	//在项目包名底下添加wxapi包,并新建WXEntryActivity extends WXBaseActivity
+	//并在AndroidManifest.xml中声明此页面（具体写法可看Library的AndroidManifest.xml中的注释）
 
 **5、调用支付宝支付**
 
@@ -154,7 +155,8 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 
         try {
             JSONObject jsonObject = new JSONObject(entity);
-            alipayApi.pay(jsonObject.getString("pay_message"));  //服务端拼凑 客户端拼凑的Library也有提供，不过不放出使用方法，毕竟已经过时，如需要请联系作者
+			//服务端拼凑 客户端拼凑的Library也有提供，不过不放出使用方法，毕竟已经过时，如需要请联系作者
+            alipayApi.pay(jsonObject.getString("pay_message"));  
         } catch (JSONException e) {
             e.printStackTrace();
         }
