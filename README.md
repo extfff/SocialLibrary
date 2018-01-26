@@ -77,7 +77,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 
 **3、build.gradle配置**
 
-在android的节点底下添加（如不要多渠道配置，可直接第一步的<code>android:value</code>配置值即可）
+在android的节点底下添加（如不要多渠道配置，可直接在AndroidManifest.xml中配置值即可）
 
 	buildTypes {
         debug {
