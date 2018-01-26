@@ -19,7 +19,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
         Social.init(this);
     }
 
-**1、AndroidManifest.xml配置**
+**2、AndroidManifest.xml配置**
 
 	<!-- 根据需要添加 -->
 	<!-- 微博 -->
@@ -75,7 +75,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
             android:theme="@android:style/Theme.Translucent"
             android:screenOrientation="portrait" />
 
-**2、build.gradle配置**
+**3、build.gradle配置**
 
 在android的节点底下添加（如不要多渠道配置，可直接第一步的<code>android:value</code>配置值即可）
 
@@ -120,7 +120,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
         }
 
 
-**3、调用第三方登录-适用全部情况**
+**4、调用第三方登录-适用全部情况**
 
 	AuthApi.doOauthVerify(this, AuthType.WEIXIN, new AuthApi.OnAuthListener() {
                     @Override
@@ -146,7 +146,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 	//如有微信登录需要配置如下环境
 	//在项目包名底下添加wxapi包,并新建WXEntryActivity extends WXBaseActivity，并在AndroidManifest.xml中声明此页面（具体写法可看Library的AndroidManifest.xml中的注释）
 
-**4、调用支付宝支付**
+**5、调用支付宝支付**
 
 	public static void alipay(Activity act, String entity, PayApi.OnPayListener l){
         AliPay alipayApi = new AliPay(act);
@@ -160,7 +160,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
         }
     }
 
-**5、调用微信支付**
+**6、调用微信支付**
 
 	public static void wxpay(final Activity act, String entity, PayApi.OnPayListener l){
         WxPay wxApi = new WxPay(act);
@@ -188,7 +188,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 	//微信支付需要配置如下环境
 	//在项目包名底下添加wxapi包,并新建WXPayEntryActivity extends WXPayBaseActivity，并在AndroidManifest.xml中声明此页面（具体写法可看Library的AndroidManifest.xml中的注释）
 
-**6、调用第三方分享-适用全部情况**
+**7、调用第三方分享-适用全部情况**
 
 	mShareApi = new ShareApi(this);
             mShareApi.setOnShareListener(this);
