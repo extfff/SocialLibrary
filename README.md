@@ -13,7 +13,7 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 
     allprojects {        repositories {            maven { url "https://raw.githubusercontent.com/extfff/repos/master" }        }    }
 
-    dependencies {        compile 'com.vendor:social:1.0'    }
+    dependencies {        compile 'com.vendor:social:1.0.1'    }
 
 <B>调用步骤：</B><br><br>
 **1、Application配置**
