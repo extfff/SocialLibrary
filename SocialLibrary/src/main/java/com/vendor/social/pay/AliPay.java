@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.alipay.sdk.app.PayTask;
 import com.vendor.social.PayApi;
+import com.vendor.social.R;
 import com.vendor.social.Social;
 import com.vendor.social.model.PayBaseContent;
 import com.vendor.social.pay.extra.alipay.PayResult;
@@ -76,7 +77,7 @@ public class AliPay extends PayApi {
             @Override
             protected void onPostExecute(PayResult result) {
                 // 支付宝返回此次支付结果及加签，建议对支付宝签名信息拿签约时支付宝提供的公钥做验签
-                String resultInfo = result.getResult();  // 同步返回需要验证的信息
+//                String resultInfo = result.getResult();  // 同步返回需要验证的信息
                 String resultStatus = result.getResultStatus();
 
                 // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
@@ -86,10 +87,10 @@ public class AliPay extends PayApi {
                     // 判断resultStatus 为非“9000”则代表可能支付失败
                     // “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
                     if (TextUtils.equals(resultStatus, "8000")) {
-//                        callbackPayFail(mAct.getString(R.string.pay_fail_wait));
+                        callbackPayFail(resultStatus, mAct.getString(R.string.pay_fail_wait));
                     } else {
                         // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-//                        callbackPayFail(mAct.getString(R.string.pay_fail));
+                        callbackPayFail(resultStatus, mAct.getString(R.string.pay_fail));
                     }
                 }
             }

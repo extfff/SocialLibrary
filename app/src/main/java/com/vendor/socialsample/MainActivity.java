@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onPayFail(String msg) {
+        public void onPayFail(String code, String msg) {
             Toast.makeText(MainActivity.this, "支付失败：" + msg, Toast.LENGTH_SHORT).show();
         }
     };

@@ -125,9 +125,9 @@ public abstract class PayApi {
     /**
      * 返回支付失败
      */
-    public static void callbackPayFail(String msg){
+    public static void callbackPayFail(String code, String msg){
         if(mPayResultListener != null){
-            mPayResultListener.onPayFail(msg);
+            mPayResultListener.onPayFail(code, msg);
         }
     }
 
@@ -144,6 +144,6 @@ public abstract class PayApi {
         /**
          * 支付回调-支付失败
          */
-        void onPayFail(String msg);
+        void onPayFail(String code, String msg);
     }
 }

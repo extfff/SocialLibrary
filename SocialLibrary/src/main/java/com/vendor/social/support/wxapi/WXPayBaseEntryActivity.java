@@ -49,7 +49,7 @@ public class WXPayBaseEntryActivity extends Activity implements IWXAPIEventHandl
 			if(resp.errCode == BaseResp.ErrCode.ERR_OK){
 				PayApi.callbackPayOk();
 			}else{
-				PayApi.callbackPayFail(resp.errStr);
+				PayApi.callbackPayFail(String.valueOf(resp.errCode), resp.errStr);
 			}
 		}
 
