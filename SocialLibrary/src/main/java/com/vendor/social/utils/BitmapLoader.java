@@ -3,10 +3,12 @@ package com.vendor.social.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.vendor.social.model.ShareContent;
 
 import java.util.List;
@@ -41,32 +43,26 @@ public class BitmapLoader {
     private void loadImage(final String icon, OnLoadImageListener l){
         mOnLoadImageListener = l;
 
-        Glide.with(mContext)
-            .load(icon)
-            .asBitmap()
-            .fitCenter()
-            .into(new SimpleTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                    if(mOnLoadImageListener != null) {
-                        if (resource != null) {
-                            mOnLoadImageListener.onResult(resource);
-                        } else if (!icon.startsWith("drawable://")) {
-                            loadImage("drawable://" + mShareContent.getAppIcon(), mOnLoadImageListener);
-                        } else {
-                            mOnLoadImageListener.onResult(null);
-                        }
-                    }
+        Glide.with(mContext).asBitmap().load(icon).into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                if(mOnLoadImageListener != null) {
+                    mOnLoadImageListener.onResult(resource);
                 }
+            }
 
-                @Override
-                public void onLoadFailed(Exception e, Drawable errorDrawable) {
-                    if(mOnLoadImageListener != null) {
+            @Override
+            public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                if(mOnLoadImageListener != null) {
+                    if (!icon.startsWith("drawable://")) {
+                        loadImage("drawable://" + mShareContent.getAppIcon(), mOnLoadImageListener);
+                    } else {
                         mOnLoadImageListener.onResult(null);
                     }
-                    mOnLoadImageListener = null;  //下载失败会触发重试 我们不需要这个操作
                 }
-            });
+                mOnLoadImageListener = null;  //下载失败会触发重试 我们不需要这个操作
+            }
+        });
     }
 
     public interface OnLoadImageListener{
