@@ -2,6 +2,7 @@ package com.vendor.social.support.wxapi;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -25,6 +26,8 @@ import org.json.JSONObject;
  */
 public class WXBaseActivity extends Activity implements IWXAPIEventHandler, OnHttpListener {
 
+    private static final String TAG = "WXBaseActivity";
+
     public static final int CODE_AUTH = 1;
     public static final int CODE_USER_INFO = 2;
 
@@ -47,7 +50,7 @@ public class WXBaseActivity extends Activity implements IWXAPIEventHandler, OnHt
 
     @Override
     public void onResp(BaseResp resp) {
-        int result = 0;
+        Log.e(TAG, "Wx onResp");
 
         //登陆返回
         if(resp instanceof SendAuth.Resp){
@@ -89,7 +92,9 @@ public class WXBaseActivity extends Activity implements IWXAPIEventHandler, OnHt
     }
 
     @Override
-    public void onResponse(Response response) {
+    public void onResponse(Response response) {  // 获取用户信息返回
+        Log.e(TAG, "Request user info callback");
+
         if(!response.isResponseOk()){
             Toast.makeText(this, response.errorMsg, Toast.LENGTH_SHORT).show();
             finish();
@@ -98,17 +103,23 @@ public class WXBaseActivity extends Activity implements IWXAPIEventHandler, OnHt
 
         try {
             JSONObject jsonObject = new JSONObject(response.data);
-            String openId = jsonObject.getString("openid");
+            if (jsonObject.has("errcode")) {  // 发生错误了
+                String errorMsg = jsonObject.getString("errmsg");
+                Log.e(TAG, errorMsg);
+                WeiXinAuth.setErrorCallBack(errorMsg);
+                finish();
+            } else {
+                String openId = jsonObject.getString("openid");
 
-            switch (response.requestCode){
-                case CODE_AUTH:
-                    String unionid = jsonObject.getString("unionid");
-                    String access_token = jsonObject.getString("access_token");
-                    String refresh_token = jsonObject.getString("refresh_token");
+                switch (response.requestCode){
+                    case CODE_AUTH:
+                        String unionid = jsonObject.getString("unionid");
+                        String access_token = jsonObject.getString("access_token");
+                        String refresh_token = jsonObject.getString("refresh_token");
 
-                    mHttpBiz.doGet(CODE_USER_INFO, access_token, openId, this); //通过授权信息获取用户信息
-                    break;
-                case CODE_USER_INFO:
+                        mHttpBiz.doGet(CODE_USER_INFO, access_token, openId, this); //通过授权信息获取用户信息
+                        break;
+                    case CODE_USER_INFO:
 //                    openid	普通用户的标识，对当前开发者帐号唯一
 //                    nickname	普通用户昵称
 //                    sex	普通用户性别，1为男性，2为女性
@@ -119,14 +130,19 @@ public class WXBaseActivity extends Activity implements IWXAPIEventHandler, OnHt
 //                    privilege	用户特权信息，json数组，如微信沃卡用户为（chinaunicom）
 //                    unionid	用户统一标识。针对一个微信开放平台帐号下的应用，同一用户的unionid是唯一的。
 
-                    String nickname = jsonObject.getString("nickname");
-                    String headimgurl = jsonObject.getString("headimgurl");
+                        String nickname = jsonObject.getString("nickname");
+                        String headimgurl = jsonObject.getString("headimgurl");
 
-                    WeiXinAuth.setCompleteCallBack(new User(openId, nickname, headimgurl));
-                    finish();
-                    break;
+                        WeiXinAuth.setCompleteCallBack(new User(openId, nickname, headimgurl));
+                        finish();
+                        break;
+                }
             }
+
         } catch (JSONException e) {
+            String errorMsg = "Json parse error";
+            Log.e(TAG, errorMsg);
+            WeiXinAuth.setErrorCallBack(errorMsg);
             finish();
         }
     }
