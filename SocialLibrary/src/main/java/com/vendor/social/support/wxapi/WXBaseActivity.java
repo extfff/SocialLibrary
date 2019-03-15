@@ -104,8 +104,9 @@ public class WXBaseActivity extends Activity implements IWXAPIEventHandler, OnHt
         try {
             JSONObject jsonObject = new JSONObject(response.data);
             if (jsonObject.has("errcode")) {  // 发生错误了
+                int errCode = jsonObject.getInt("errcode");
                 String errorMsg = jsonObject.getString("errmsg");
-                Log.e(TAG, errorMsg);
+                Log.e(TAG, errCode + " : " + errorMsg);
                 WeiXinAuth.setErrorCallBack(errorMsg);
                 finish();
             } else {
