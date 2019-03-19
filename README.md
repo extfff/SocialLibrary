@@ -11,9 +11,15 @@ qq分享，qq空间分析，微博分享，微信分享，微信朋友圈分享
 <br><br><br>
 <B>集成方法：</B>
 
-    allprojects {        repositories {            maven { url "https://raw.githubusercontent.com/extfff/repos/master" }        }    }
+    allprojects {
+        repositories {
+            maven { url "https://raw.githubusercontent.com/extfff/repos/master" }
+        }
+    }
 
-    dependencies {        compile 'com.vendor:social:1.0.1'    }
+    dependencies {
+        implementation 'com.vendor:social:1.0.2'
+    }
 
 <B>调用步骤：</B><br><br>
 **1、Application配置**
